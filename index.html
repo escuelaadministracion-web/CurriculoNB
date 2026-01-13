@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo Básico Nacional - Universidad José María Vargas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        header h1 {
+            color: #2575fc;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header h2 {
+            color: #6a11cb;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .subtitulo {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+        
+        .contenido-principal {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .contenido-principal {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .tarjetas-contenido {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .tarjeta {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #2575fc;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tarjeta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tarjeta-principal {
+            border-left: 5px solid #6a11cb;
+            grid-column: 1 / -1;
+        }
+        
+        .tarjeta h3 {
+            color: #2575fc;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .tarjeta-principal h3 {
+            color: #6a11cb;
+        }
+        
+        .tarjeta p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #2575fc;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(37, 117, 252, 0.3);
+        }
+        
+        .btn:hover {
+            background: #6a11cb;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(106, 17, 203, 0.4);
+        }
+        
+        .btn-principal {
+            background: #6a11cb;
+        }
+        
+        .btn-principal:hover {
+            background: #4a0ca3;
+        }
+        
+        .sidebar {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sidebar h3 {
+            color: #6a11cb;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .lista-recursos {
+            list-style-type: none;
+        }
+        
+        .lista-recursos li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .lista-recursos li:last-child {
+            border-bottom: none;
+        }
+        
+        .lista-recursos a {
+            color: #2575fc;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: color 0.2s ease;
+        }
+        
+        .lista-recursos a:hover {
+            color: #6a11cb;
+        }
+        
+        .lista-recursos a::before {
+            content: "📚";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .info-adicional {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-adicional h3 {
+            color: #6a11cb;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .info-adicional p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .instrucciones {
+            background-color: #f8f9fa;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin-top: 20px;
+        }
+        
+        .instrucciones h4 {
+            color: #ff9800;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+        
+        .indicador {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Currículo Básico Nacional</h1>
+            <h2>Universidad José María Vargas</h2>
+            <p class="subtitulo">Repositorio de materiales para la asignatura "Currículo Básico Nacional" - Docente: Miguel Subero</p>
+            <div class="indicador">Repositorio Git - Navegación centralizada</div>
+        </header>
+        
+        <div class="contenido-principal">
+            <div>
+                <div class="tarjetas-contenido">
+                    <div class="tarjeta tarjeta-principal">
+                        <h3>Presentación Principal</h3>
+                        <p>Exploración completa sobre "El Currículum como Construcción Social y Cultural". Esta presentación de 10 páginas analiza críticamente el currículum como una construcción cultural, política y pedagógica, identificando sus dimensiones de poder y su papel en la reproducción o transformación social.</p>
+                        <a href="presentacion/presentacion-curriculo.html" class="btn btn-principal">Acceder a la Presentación Completa</a>
+                    </div>
+                    
+                    <div class="tarjeta">
+                        <h3>Modelos Curriculares y Proyectos de Sociedad</h3>
+                        <p>Análisis de los diferentes modelos curriculares (Tyler, Taba, Stenhouse) y su relación con proyectos de sociedad. Incluye comparativas, ejemplos y reflexiones sobre las implicaciones ideológicas de cada enfoque.</p>
+                        <a href="modelos/modelos-curriculares.html" class="btn">Explorar Modelos</a>
+                    </div>
+                    
+                    <div class="tarjeta">
+                        <h3>Análisis Crítico de Currículos</h3>
+                        <p>Herramientas y marcos teóricos para realizar análisis críticos de currículos existentes. Incluye metodologías para identificar sesgos, omisiones y dimensiones de poder en los diseños curriculares.</p>
+                        <a href="analisis/analisis-critico.html" class="btn">Realizar Análisis</a>
+                    </div>
+                    
+                    <div class="tarjeta">
+                        <h3>Caja de Herramientas</h3>
+                        <p>Recursos prácticos, plantillas, guías y materiales complementarios para el diseño y evaluación curricular. Incluye instrumentos para la planificación, implementación y reflexión sobre la práctica curricular.</p>
+                        <a href="recursos/caja-herramientas.html" class="btn">Acceder a Recursos</a>
+                    </div>
+                </div>
+                
+                <div class="info-adicional">
+                    <h3>Sobre este Repositorio</h3>
+                    <p>Este repositorio Git está diseñado para organizar los materiales de la asignatura "Currículo Básico Nacional" de la Universidad José María Vargas. Los contenidos están estructurados para facilitar la navegación y el acceso a los diferentes recursos de aprendizaje.</p>
+                    
+                    <div class="instrucciones">
+                        <h4>Instrucciones para Estudiantes:</h4>
+                        <p>1. La presentación principal es el núcleo de la asignatura y se recomienda revisarla primero.</p>
+                        <p>2. Utilice los materiales complementarios según las actividades propuestas por el docente.</p>
+                        <p>3. Para navegar entre las 10 páginas de la presentación principal, use los botones "Anterior" y "Siguiente".</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <h3>Recursos Adicionales</h3>
+                <ul class="lista-recursos">
+                    <li><a href="#">Guía de Estudio - Currículo Básico</a></li>
+                    <li><a href="#">Lecturas Complementarias</a></li>
+                    <li><a href="#">Foro de Discusión</a></li>
+                    <li><a href="#">Actividades Prácticas</a></li>
+                    <li><a href="#">Evaluaciones y Rúbricas</a></li>
+                    <li><a href="#">Glosario de Términos</a></li>
+                    <li><a href="#">Lineamientos Institucionales</a></li>
+                    <li><a href="#">Bibliografía Recomendada</a></li>
+                </ul>
+                
+                <div style="margin-top: 30px;">
+                    <h3>Acceso Rápido</h3>
+                    <p style="margin-bottom: 15px; font-size: 0.9rem;">Para acceder directamente a páginas específicas de la presentación:</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <a href="presentacion/presentacion-curriculo.html#pagina1" class="btn" style="padding: 8px 15px; font-size: 0.8rem;">Pág. 1</a>
+                        <a href="presentacion/presentacion-curriculo.html#pagina2" class="btn" style="padding: 8px 15px; font-size: 0.8rem;">Pág. 2</a>
+                        <a href="presentacion/presentacion-curriculo.html#pagina3" class="btn" style="padding: 8px 15px; font-size: 0.8rem;">Pág. 3</a>
+                        <a href="presentacion/presentacion-curriculo.html#pagina4" class="btn" style="padding: 8px 15px; font-size: 0.8rem;">Pág. 4</a>
+                        <a href="presentacion/presentacion-curriculo.html#pagina5" class="btn" style="padding: 8px 15px; font-size: 0.8rem;">Pág. 5</a>
+                        <a href="presentacion/presentacion-curriculo.html#pagina6" class="btn" style="padding: 8px 15px; font-size: 0.8rem;">Pág. 6</a>
+                        <a href="presentacion/presentacion-curriculo.html#pagina7" class="btn" style="padding: 8px 15px; font-size: 0.8rem;">Pág. 7</a>
+                        <a href="presentacion/presentacion-curriculo.html#pagina8" class="btn" style="padding: 8px 15px; font-size: 0.8rem;">Pág. 8</a>
+                        <a href="presentacion/presentacion-curriculo.html#pagina9" class="btn" style="padding: 8px 15px; font-size: 0.8rem;">Pág. 9</a>
+                        <a href="presentacion/presentacion-curriculo.html#pagina10" class="btn" style="padding: 8px 15px; font-size: 0.8rem;">Pág. 10</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Universidad José María Vargas - Departamento de Educación</p>
+            <p>Asignatura: Currículo Básico Nacional | Docente: Miguel Subero</p>
+            <p>© 2026 - Todos los derechos reservados</p>
+        </footer>
+    </div>
+</body>
+</html>
