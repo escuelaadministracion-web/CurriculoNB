@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad: La Caja de Herramientas del Futuro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .page {
+            background: white;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            page-break-after: always;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2575fc;
+        }
+        
+        .header h1 {
+            color: #2575fc;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .header h2 {
+            color: #6a11cb;
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+        
+        .university-info {
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .activity-info {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        
+        .activity-info h3 {
+            color: #1565c0;
+            margin-bottom: 10px;
+        }
+        
+        .instructions {
+            background: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .instructions h3 {
+            color: #ff6f00;
+            margin-bottom: 10px;
+        }
+        
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 25px 0;
+        }
+        
+        .timeline-step {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            background: #f5f5f5;
+            margin: 0 5px;
+            border-radius: 8px;
+        }
+        
+        .timeline-step-number {
+            background: #2575fc;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+        }
+        
+        .worksheet {
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            background: #fafafa;
+        }
+        
+        .worksheet h3 {
+            text-align: center;
+            color: #6a11cb;
+            margin-bottom: 20px;
+        }
+        
+        .toolbox {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .tool-item {
+            border: 1px solid #2575fc;
+            border-radius: 8px;
+            padding: 15px 10px;
+            text-align: center;
+            background: white;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .tool-item.empty {
+            border: 2px dashed #999;
+            background: #f9f9f9;
+        }
+        
+        .tool-category {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .tool-content {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .group-worksheet {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .group-section {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            background: white;
+        }
+        
+        .group-section h4 {
+            color: #2575fc;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .reflection-questions {
+            background: #e8f5e9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .reflection-questions h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .question-item {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        
+        .cutout-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .cutout-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            background: white;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            page-break-inside: avoid;
+        }
+        
+        .btn-print {
+            background: #2575fc;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            font-size: 1rem;
+        }
+        
+        .btn-print:hover {
+            background: #1c68e0;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .page {
+                box-shadow: none;
+                margin-bottom: 0;
+            }
+            
+            .btn-print {
+                display: none;
+            }
+            
+            .tool-item, .cutout-card {
+                break-inside: avoid;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .toolbox {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cutout-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .group-worksheet {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline {
+                flex-direction: column;
+            }
+            
+            .timeline-step {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Página 1: Introducción y guía para el facilitador -->
+        <div class="page">
+            <div class="header">
+                <h1>La Caja de Herramientas del Futuro</h1>
+                <h2>Actividad de Activación - Currículo como Construcción Social</h2>
+                <div class="university-info">
+                    Universidad José María Vargas - Asignatura: Currículo Básico Nacional<br>
+                    Docente: Miguel Subero
+                </div>
+            </div>
+            
+            <div class="activity-info">
+                <h3>Propósito de la Actividad</h3>
+                <p>Esta actividad tiene como objetivo introducir el concepto de selección curricular mediante una experiencia práctica. Los participantes identificarán elementos que consideran indispensables en la formación de una persona, reconociendo así que toda selección educativa implica valores, prioridades y exclusiones.</p>
+                
+                <h3>Duración</h3>
+                <p>15 minutos (2 min individual + 5 min grupal + 8 min puesta en común)</p>
+                
+                <h3>Materiales Necesarios</h3>
+                <ul>
+                    <li>Esta guía imprimible (1 por estudiante)</li>
+                    <li>Tarjetas recortables (incluidas al final)</li>
+                    <li>Marcadores o lápices</li>
+                    <li>Pizarra o papelógrafo para la puesta en común</li>
+                </ul>
+            </div>
+            
+            <div class="instructions">
+                <h3>Instrucciones para el Facilitador</h3>
+                <ol>
+                    <li>Introduce la actividad explicando que vamos a diseñar una "caja de herramientas" para una persona que se gradúa hoy.</li>
+                    <li>Distribuye las hojas de trabajo individuales y pide a los estudiantes que completen su caja de herramientas con 10 elementos.</li>
+                    <li>Después del trabajo individual, forma grupos de 3-4 personas para que compartan y lleguen a un consenso.</li>
+                    <li>Realiza una puesta en común pidiendo a cada grupo que comparta 2-3 elementos de su lista.</li>
+                    <li>Guía la reflexión final usando las preguntas proporcionadas.</li>
+                </ol>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-step">
+                    <div class="timeline-step-number">1</div>
+                    <h4>Reflexión Individual</h4>
+                    <p>2 minutos</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-step-number">2</div>
+                    <h4>Trabajo en Grupo</h4>
+                    <p>5 minutos</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-step-number">3</div>
+                    <h4>Puesta en Común</h4>
+                    <p>8 minutos</p>
+                </div>
+            </div>
+            
+            <div class="reflection-questions">
+                <h3>Preguntas para la Reflexión Colectiva</h3>
+                <div class="question-item">
+                    <p><strong>¿Qué criterios usaron para seleccionar los elementos?</strong> (Utilidad práctica, valores éticos, desarrollo personal, etc.)</p>
+                </div>
+                <div class="question-item">
+                    <p><strong>¿Todos elegiríamos lo mismo? ¿Por qué?</strong> (Destacar la diversidad de perspectivas)</p>
+                </div>
+                <div class="question-item">
+                    <p><strong>¿Quién decide qué es "indispensable" en una sociedad?</strong> (Introducir el concepto de poder en la selección curricular)</p>
+                </div>
+                <div class="question-item">
+                    <p><strong>Transición conceptual:</strong> "Este ejercicio de selección es, en esencia, lo que hacemos al diseñar un currículum. Hoy exploraremos por qué esa selección nunca es neutral y qué implicaciones tiene para la educación."</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Página 2: Hoja de trabajo individual -->
+        <div class="page">
+            <div class="header">
+                <h1>Mi Caja de Herramientas del Futuro</h1>
+                <h2>Reflexión Individual</h2>
+            </div>
+            
+            <div class="instructions">
+                <h3>Instrucciones</h3>
+                <p>Imagina que tienes que diseñar la "caja de herramientas" cultural y cognitiva para una persona que se gradúa hoy. ¿Qué 10 elementos indispensables incluirías? Pueden ser conocimientos, habilidades, valores o actitudes. Escribe o dibuja cada elemento en una de las herramientas a continuación.</p>
+            </div>
+            
+            <div class="worksheet">
+                <h3>Mi Selección Personal</h3>
+                
+                <div class="toolbox">
+                    <div class="tool-item">
+                        <div class="tool-category">Herramienta 1</div>
+                        <div class="tool-content">
+                            <textarea placeholder="Escribe aquí tu primer elemento indispensable..." style="width: 100%; height: 80px; border: none; resize: none; text-align: center;"></textarea>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-category">Herramienta 2</div>
+                        <div class="tool-content">
+                            <textarea placeholder="Escribe aquí tu segundo elemento..." style="width: 100%; height: 80px; border: none; resize: none; text-align: center;"></textarea>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-category">Herramienta 3</div>
+                        <div class="tool-content">
+                            <textarea placeholder="Escribe aquí tu tercer elemento..." style="width: 100%; height: 80px; border: none; resize: none; text-align: center;"></textarea>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-category">Herramienta 4</div>
+                        <div class="tool-content">
+                            <textarea placeholder="Escribe aquí tu cuarto elemento..." style="width: 100%; height: 80px; border: none; resize: none; text-align: center;"></textarea>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-category">Herramienta 5</div>
+                        <div class="tool-content">
+                            <textarea placeholder="Escribe aquí tu quinto elemento..." style="width: 100%; height: 80px; border: none; resize: none; text-align: center;"></textarea>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-category">Herramienta 6</div>
+                        <div class="tool-content">
+                            <textarea placeholder="Escribe aquí tu sexto elemento..." style="width: 100%; height: 80px; border: none; resize: none; text-align: center;"></textarea>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-category">Herramienta 7</div>
+                        <div class="tool-content">
+                            <textarea placeholder="Escribe aquí tu séptimo elemento..." style="width: 100%; height: 80px; border: none; resize: none; text-align: center;"></textarea>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-category">Herramienta 8</div>
+                        <div class="tool-content">
+                            <textarea placeholder="Escribe aquí tu octavo elemento..." style="width: 100%; height: 80px; border: none; resize: none; text-align: center;"></textarea>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-category">Herramienta 9</div>
+                        <div class="tool-content">
+                            <textarea placeholder="Escribe aquí tu noveno elemento..." style="width: 100%; height: 80px; border: none; resize: none; text-align: center;"></textarea>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-category">Herramienta 10</div>
+                        <div class="tool-content">
+                            <textarea placeholder="Escribe aquí tu décimo elemento..." style="width: 100%; height: 80px; border: none; resize: none; text-align: center;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <p><strong>Nombre:</strong> _________________________ &nbsp; &nbsp; <strong>Fecha:</strong> _________________________</p>
+                </div>
+            </div>
+            
+            <div class="instructions">
+                <h3>Preparación para el trabajo grupal</h3>
+                <p>Marca con un (*) los 3 elementos que consideras MÁS importantes de tu lista. Estarás compartiendo estos elementos con tu grupo para llegar a un consenso.</p>
+            </div>
+        </div>
+        
+        <!-- Página 3: Hoja de trabajo grupal -->
+        <div class="page">
+            <div class="header">
+                <h1>Caja de Herramientas del Futuro - Consenso Grupal</h1>
+                <h2>Trabajo en Equipo</h2>
+            </div>
+            
+            <div class="instructions">
+                <h3>Instrucciones para el Grupo</h3>
+                <p>Compartan las herramientas que cada uno seleccionó individualmente. Discutan y lleguen a un consenso sobre cuáles son los 10 elementos MÁS importantes para incluir en la caja de herramientas. Escriban su selección final a continuación.</p>
+            </div>
+            
+            <div class="group-worksheet">
+                <div class="group-section">
+                    <h4>Elementos Propuestos por el Grupo</h4>
+                    <ol>
+                        <li>_________________________________________________</li>
+                        <li>_________________________________________________</li>
+                        <li>_________________________________________________</li>
+                        <li>_________________________________________________</li>
+                        <li>_________________________________________________</li>
+                        <li>_________________________________________________</li>
+                        <li>_________________________________________________</li>
+                        <li>_________________________________________________</li>
+                        <li>_________________________________________________</li>
+                        <li>_________________________________________________</li>
+                    </ol>
+                </div>
+                
+                <div class="group-section">
+                    <h4>Criterios de Selección Usados</h4>
+                    <p>¿Qué criterios utilizaron para seleccionar estos elementos?</p>
+                    <div style="margin: 15px 0;">
+                        <input type="checkbox" id="criteria1"> <label for="criteria1">Utilidad práctica</label><br>
+                        <input type="checkbox" id="criteria2"> <label for="criteria2">Valores éticos</label><br>
+                        <input type="checkbox" id="criteria3"> <label for="criteria3">Desarrollo personal</label><br>
+                        <input type="checkbox" id="criteria4"> <label for="criteria4">Preparación para el trabajo</label><br>
+                        <input type="checkbox" id="criteria5"> <label for="criteria5">Contribución a la sociedad</label><br>
+                        <input type="checkbox" id="criteria6"> <label for="criteria6">Otro: _________________</label>
+                    </div>
+                    
+                    <h4>Elementos Excluidos</h4>
+                    <p>¿Qué elementos importantes tuvieron que dejar fuera por el límite de 10?</p>
+                    <p>_________________________________________________</p>
+                    <p>_________________________________________________</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <p><strong>Integrantes del grupo:</strong> _________________________________________</p>
+            </div>
+        </div>
+        
+        <!-- Página 4: Tarjetas recortables y materiales adicionales -->
+        <div class="page">
+            <div class="header">
+                <h1>Materiales Adicionales</h1>
+                <h2>Tarjetas Recortables y Ejemplos</h2>
+            </div>
+            
+            <div class="instructions">
+                <h3>Tarjetas Recortables para Dinámica Alternativa</h3>
+                <p>Recorta estas tarjetas y úsalas para una versión más interactiva de la actividad. Los participantes pueden seleccionar tarjetas y agregar sus propias ideas en las tarjetas en blanco.</p>
+            </div>
+            
+            <div class="cutout-cards">
+                <div class="cutout-card">
+                    Pensamiento crítico
+                </div>
+                <div class="cutout-card">
+                    Empatía
+                </div>
+                <div class="cutout-card">
+                    Resolución de problemas
+                </div>
+                <div class="cutout-card">
+                    Comunicación efectiva
+                </div>
+                <div class="cutout-card">
+                    Conocimiento financiero
+                </div>
+                <div class="cutout-card">
+                    Inteligencia emocional
+                </div>
+                <div class="cutout-card">
+                    Creatividad
+                </div>
+                <div class="cutout-card">
+                    Trabajo en equipo
+                </div>
+                <div class="cutout-card">
+                    Conciencia ambiental
+                </div>
+                <div class="cutout-card">
+                    Ciudadanía digital
+                </div>
+                <div class="cutout-card">
+                    Adaptabilidad
+                </div>
+                <div class="cutout-card">
+                    Resiliencia
+                </div>
+                <div class="cutout-card" style="border: 2px dashed #999;">
+                    (Escribe tu idea)
+                </div>
+                <div class="cutout-card" style="border: 2px dashed #999;">
+                    (Escribe tu idea)
+                </div>
+                <div class="cutout-card" style="border: 2px dashed #999;">
+                    (Escribe tu idea)
+                </div>
+                <div class="cutout-card" style="border: 2px dashed #999;">
+                    (Escribe tu idea)
+                </div>
+            </div>
+            
+            <div class="reflection-questions" style="margin-top: 30px;">
+                <h3>Para la Puesta en Común</h3>
+                <p>Cuando cada grupo presente sus herramientas, el facilitador puede:</p>
+                <ul>
+                    <li>Registrar las herramientas más frecuentes en la pizarra</li>
+                    <li>Agruparlas por categorías (conocimientos, habilidades, valores)</li>
+                    <li>Identificar patrones y elementos comunes</li>
+                    <li>Señalar elementos únicos o inesperados</li>
+                </ul>
+            </div>
+            
+            <div class="activity-info" style="margin-top: 30px;">
+                <h3>Ideas para la Transición al Tema Curricular</h3>
+                <p>Después de la actividad, conectar explícitamente con el tema del currículum:</p>
+                <p><em>"Al igual que en esta actividad, cuando diseñamos un currículum estamos seleccionando qué conocimientos, habilidades y valores consideramos importantes. Pero, ¿quién toma estas decisiones? ¿Qué voces están representadas y cuáles quedan fuera? ¿Qué intereses pueden estar influyendo en estas selecciones? Estas son las preguntas que exploraremos en nuestra sesión de hoy."</em></p>
+            </div>
+        </div>
+        
+        <button class="btn-print" onclick="window.print()">Imprimir Material Completo</button>
+    </div>
+
+    <script>
+        // Añadir la fecha actual automáticamente en las hojas de trabajo
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const dateString = today.toLocaleDateString('es-ES');
+            
+            // Añadir fecha a la hoja individual
+            const individualDateInput = document.createElement('input');
+            individualDateInput.type = 'text';
+            individualDateInput.value = dateString;
+            individualDateInput.style.border = 'none';
+            individualDateInput.style.borderBottom = '1px solid #333';
+            individualDateInput.style.width = '100px';
+            individualDateInput.style.textAlign = 'center';
+            individualDateInput.style.background = 'transparent';
+            
+            // Insertar después del texto "Fecha:"
+            const dateLabels = document.querySelectorAll('strong');
+            dateLabels.forEach(label => {
+                if (label.textContent.includes('Fecha:')) {
+                    label.parentNode.appendChild(individualDateInput.cloneNode(true));
+                }
+            });
+        });
+    </script>
+</body>
+</html>

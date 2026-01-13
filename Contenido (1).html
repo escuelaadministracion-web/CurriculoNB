@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículum Básico Nacional - Universidad José María Vargas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .presentacion {
+            width: 100%;
+            max-width: 1200px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .pagina {
+            display: none;
+            padding: 40px;
+            min-height: 600px;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .pagina.activa {
+            display: block;
+        }
+        
+        .encabezado {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2575fc;
+        }
+        
+        .encabezado h1 {
+            color: #2575fc;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .encabezado h2 {
+            color: #6a11cb;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .contenido {
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .contenido h3 {
+            color: #2575fc;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        .contenido p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .contenido ul, .contenido ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .contenido li {
+            margin-bottom: 10px;
+        }
+        
+        .tarjeta {
+            background: #f8f9fa;
+            border-left: 5px solid #6a11cb;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tarjeta-destacada {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tarjeta-destacada h3 {
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .navegacion {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        .btn {
+            background: #2575fc;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 15px rgba(37, 117, 252, 0.3);
+        }
+        
+        .btn:hover {
+            background: #6a11cb;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(106, 17, 203, 0.4);
+        }
+        
+        .btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-anterior {
+            background: #6a11cb;
+        }
+        
+        .btn-anterior:hover {
+            background: #4a0ca3;
+        }
+        
+        .indicador-pagina {
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 25px 0;
+        }
+        
+        .tabla-modelos {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .tabla-modelos th {
+            background: #2575fc;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .tabla-modelos td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .tabla-modelos tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .tabla-modelos tr:hover {
+            background: #eef5ff;
+        }
+        
+        .ficha-trabajo {
+            background: #fff9e6;
+            border: 2px dashed #ffc107;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .ficha-trabajo h3 {
+            color: #ff9800;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .pregunta {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dotted #ddd;
+        }
+        
+        .pregunta h4 {
+            color: #2575fc;
+            margin-bottom: 10px;
+        }
+        
+        .reflexion-debate {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .reflexion-debate h3 {
+            color: #2e7d32;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .reflexion-debate p {
+            font-style: italic;
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .pagina {
+                padding: 25px;
+            }
+            
+            .encabezado h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentacion">
+        <!-- Página 1: Portada -->
+        <div class="pagina activa" id="pagina1">
+            <div class="encabezado">
+                <h1>El Currículum como Construcción Social y Cultural</h1>
+                <h2>Universidad José María Vargas</h2>
+                <h2>Asignatura: Currículo Básico Nacional</h2>
+                <h2>Docente: Miguel Subero</h2>
+            </div>
+            
+            <div class="contenido">
+                <div class="tarjeta-destacada">
+                    <h3>Propósito de la Sesión</h3>
+                    <p>Analizar críticamente el currículum como una construcción cultural, política y pedagógica, identificando sus dimensiones de poder y su papel en la reproducción o transformación social.</p>
+                </div>
+                
+                <div class="grid-2">
+                    <div class="tarjeta">
+                        <h3>Duración</h3>
+                        <p>90-120 minutos</p>
+                    </div>
+                    <div class="tarjeta">
+                        <h3>Modalidad</h3>
+                        <p>Presencial o Virtual</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navegacion">
+                <button class="btn btn-anterior" disabled>
+                    <span>←</span> Anterior
+                </button>
+                <button class="btn btn-siguiente" onclick="cambiarPagina(1, 2)">
+                    Siguiente <span>→</span>
+                </button>
+            </div>
+            <div class="indicador-pagina">Página 1 de 10</div>
+        </div>
+        
+        <!-- Página 2: Objetivos -->
+        <div class="pagina" id="pagina2">
+            <div class="encabezado">
+                <h1>Objetivos de Aprendizaje</h1>
+            </div>
+            
+            <div class="contenido">
+                <p>Al final de la sesión, los participantes serán capaces de:</p>
+                
+                <div class="tarjeta">
+                    <ul>
+                        <li><strong>Comprender</strong> el currículum como una construcción social, cultural e ideológica, no neutral.</li>
+                        <li><strong>Analizar críticamente</strong> los elementos del currículum formal y oculto desde la perspectiva de Gimeno Sacristán.</li>
+                        <li><strong>Comparar</strong> los modelos curriculares de Tyler, Taba y Stenhouse, identificando sus implicaciones ideológicas.</li>
+                        <li><strong>Proponer</strong> modificaciones al currículum desde una perspectiva crítica e inclusiva.</li>
+                    </ul>
+                </div>
+                
+                <div class="tarjeta-destacada">
+                    <h3>Enfoque Pedagógico</h3>
+                    <p>Esta sesión se fundamenta en el aprendizaje activo y colaborativo, combinando exposición teórica, reflexión individual, debate grupal y actividades interactivas para promover un pensamiento crítico sobre el currículum.</p>
+                </div>
+            </div>
+            
+            <div class="navegacion">
+                <button class="btn btn-anterior" onclick="cambiarPagina(2, 1)">
+                    <span>←</span> Anterior
+                </button>
+                <button class="btn btn-siguiente" onclick="cambiarPagina(2, 3)">
+                    Siguiente <span>→</span>
+                </button>
+            </div>
+            <div class="indicador-pagina">Página 2 de 10</div>
+        </div>
+        
+        <!-- Página 3: Materiales y Recursos -->
+        <div class="pagina" id="pagina3">
+            <div class="encabezado">
+                <h1>Materiales y Recursos</h1>
+            </div>
+            
+            <div class="contenido">
+                <h3>Recursos Principales</h3>
+                
+                <div class="grid-2">
+                    <div class="tarjeta">
+                        <h4>Lecturas</h4>
+                        <ul>
+                            <li>Gimeno Sacristán: "El currículum: una reflexión sobre la práctica"</li>
+                            <li>Documento: "Modelos para el diseño curricular" (Tyler, Taba, Stenhouse)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tarjeta">
+                        <h4>Videos Educativos</h4>
+                        <ul>
+                            <li>"Diseño Curricular | Conceptos Clave" - Canal Pedagogía MX</li>
+                            <li>"Currículo Educativo" - Canal Palabra Maestra</li>
+                            <li>"Todos los tipos de currículo educativo" - Canal Aprendemos de TODO</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3>Materiales para la Sesión</h3>
+                
+                <div class="tarjeta">
+                    <ul>
+                        <li>Presentación digital con conceptos clave</li>
+                        <li>Ficha de trabajo para el debate (impresa o digital)</li>
+                        <li>Acceso a plataforma de colaboración (Padlet, Jamboard o Miro)</li>
+                        <li>Recursos para actividad interactiva (Mentimeter, Kahoot, etc.)</li>
+                    </ul>
+                </div>
+                
+                <div class="tarjeta-destacada">
+                    <h3>Recursos Digitales</h3>
+                    <p>Los estudiantes pueden acceder a los materiales complementarios a través del aula virtual de la universidad, incluyendo enlaces a los textos completos y videos recomendados.</p>
+                </div>
+            </div>
+            
+            <div class="navegacion">
+                <button class="btn btn-anterior" onclick="cambiarPagina(3, 2)">
+                    <span>←</span> Anterior
+                </button>
+                <button class="btn btn-siguiente" onclick="cambiarPagina(3, 4)">
+                    Siguiente <span>→</span>
+                </button>
+            </div>
+            <div class="indicador-pagina">Página 3 de 10</div>
+        </div>
+        
+        <!-- Página 4: Fase 1 - Activación -->
+        <div class="pagina" id="pagina4">
+            <div class="encabezado">
+                <h1>Fase 1: Activación e Introducción</h1>
+                <h2>"La Caja de Herramientas del Futuro"</h2>
+            </div>
+            
+            <div class="contenido">
+                <h3>Dinámica Inicial (15 minutos)</h3>
+                
+                <div class="tarjeta">
+                    <h4>Consigna para los Estudiantes</h4>
+                    <p><em>"Imaginen que tienen que diseñar la 'caja de herramientas' cultural y cognitiva para una persona que se gradúa hoy. ¿Qué 10 elementos indispensables incluirían? Pueden ser conocimientos, habilidades, valores o actitudes."</em></p>
+                </div>
+                
+                <h3>Desarrollo de la Actividad</h3>
+                
+                <ol>
+                    <li><strong>Reflexión individual (2 min):</strong> Cada estudiante anota sus 10 elementos indispensables.</li>
+                    <li><strong>Trabajo en grupos pequeños (5 min):</strong> En grupos de 3-4 personas, discuten y eligen una lista consensuada.</li>
+                    <li><strong>Puesta en común (8 min):</strong> El facilitador recibe algunas respuestas y guía la reflexión con preguntas clave.</li>
+                </ol>
+                
+                <div class="tarjeta-destacada">
+                    <h3>Preguntas para la Reflexión Colectiva</h3>
+                    <ul>
+                        <li>¿Qué criterios usaron para seleccionar los elementos?</li>
+                        <li>¿Todos elegiríamos lo mismo? ¿Por qué?</li>
+                        <li>¿Quién decide qué es "indispensable" en una sociedad?</li>
+                    </ul>
+                </div>
+                
+                <h3>Transición Conceptual</h3>
+                <p><em>"Este ejercicio de selección es, en esencia, lo que hacemos al diseñar un currículum. Hoy exploraremos por qué esa selección nunca es neutral y qué implicaciones tiene para la educación."</em></p>
+            </div>
+            
+            <div class="navegacion">
+                <button class="btn btn-anterior" onclick="cambiarPagina(4, 3)">
+                    <span>←</span> Anterior
+                </button>
+                <button class="btn btn-siguiente" onclick="cambiarPagina(4, 5)">
+                    Siguiente <span>→</span>
+                </button>
+            </div>
+            <div class="indicador-pagina">Página 4 de 10</div>
+        </div>
+        
+        <!-- Página 5: Fase 2 - Marco Teórico (Parte 1) -->
+        <div class="pagina" id="pagina5">
+            <div class="encabezado">
+                <h1>Fase 2: Marco Teórico</h1>
+                <h2>El Concepto Crítico - Gimeno Sacristán</h2>
+            </div>
+            
+            <div class="contenido">
+                <h3>El Currículum no es un Plan, es una Praxis</h3>
+                
+                <div class="tarjeta">
+                    <h4>Conceptos Centrales</h4>
+                    <ul>
+                        <li><strong>No es neutral:</strong> El currículum es una <strong>selección cultural</strong> que responde a: "¿Qué conocimiento considera esta sociedad que es válido y digno de ser transmitido?"</li>
+                        <li><strong>Es una Praxis:</strong> No es solo un documento (currículum prescrito). Es la puesta en práctica, la dinámica viva que ocurre en el aula.</li>
+                        <li><strong>Es un Proyecto Cultural:</strong> Reflecta y, a la vez, moldea la cultura. Decide qué partes de ella se visibilizan y cuáles se ocultan.</li>
+                    </ul>
+                </div>
+                
+                <div class="tarjeta-destacada">
+                    <h3>Metáfora Visual: El Caleidoscopio</h3>
+                    <p>"El currículum es como un caleidoscopio. Los fragmentos de cristal (el conocimiento, la cultura) siempre están ahí, pero la forma en que los giramos y ordenamos (la selección curricular) crea un patrón específico y, lo más importante, oculta otros patrones posibles."</p>
+                </div>
+                
+                <h3>Pregunta Interactiva para la Audiencia</h3>
+                <div class="tarjeta">
+                    <p><em>"Piensen en su propia formación. ¿Recuerdan algún tema que se repetía constantemente y otro que brillaba por su ausencia? ¿Qué creen que eso nos dice sobre los valores de ese sistema educativo?"</em></p>
+                </div>
+            </div>
+            
+            <div class="navegacion">
+                <button class="btn btn-anterior" onclick="cambiarPagina(5, 4)">
+                    <span>←</span> Anterior
+                </button>
+                <button class="btn btn-siguiente" onclick="cambiarPagina(5, 6)">
+                    Siguiente <span>→</span>
+                </button>
+            </div>
+            <div class="indicador-pagina">Página 5 de 10</div>
+        </div>
+        
+        <!-- Página 6: Fase 2 - Marco Teórico (Parte 2) -->
+        <div class="pagina" id="pagina6">
+            <div class="encabezado">
+                <h1>Fase 2: Marco Teórico (Continuación)</h1>
+                <h2>Modelos Clásicos del Currículum</h2>
+            </div>
+            
+            <div class="contenido">
+                <h3>Tres Formas de Entender el "Cómo"</h3>
+                <p><em>"Distintos teóricos han propuesto modelos para diseñar el currículum. Pero cada modelo es, en sí mismo, una declaración de intenciones y una visión del mundo."</em></p>
+                
+                <table class="tabla-modelos">
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Pregunta Central</th>
+                            <th>Metáfora</th>
+                            <th>Rol del Docente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tyler (Objetivos)</strong></td>
+                            <td>¿Logramos los objetivos?</td>
+                            <td>Mapa detallado</td>
+                            <td>Técnico aplicador</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Taba (Inductivo)</strong></td>
+                            <td>¿Cómo aprenden mis estudiantes?</td>
+                            <td>GPS adaptable</td>
+                            <td>Diseñador contextual</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Stenhouse (Proceso)</strong></td>
+                            <td>¿Qué estamos descubriendo?</td>
+                            <td>Brújula exploratoria</td>
+                            <td>Investigador crítico</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="grid-2">
+                    <div class="tarjeta">
+                        <h4>Ralph W. Tyler (1949)</h4>
+                        <p><strong>Modelo por Objetivos</strong> - Enfoque racional, lineal y tecnocrático basado en 4 preguntas fundamentales sobre objetivos, experiencias, organización y evaluación.</p>
+                        <p><em>Implicación ideológica:</em> Modelo funcionalista que puede llevar a una educación mecanizada.</p>
+                    </div>
+                    
+                    <div class="tarjeta">
+                        <h4>Lawrence Stenhouse (1975)</h4>
+                        <p><strong>Modelo de Proceso</strong> - El currículum es una "propuesta hipotética" que los profesores investigan en su práctica.</p>
+                        <p><em>Implicación ideológica:</em> Modelo emancipador y crítico que empodera al docente.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navegacion">
+                <button class="btn btn-anterior" onclick="cambiarPagina(6, 5)">
+                    <span>←</span> Anterior
+                </button>
+                <button class="btn btn-siguiente" onclick="cambiarPagina(6, 7)">
+                    Siguiente <span>→</span>
+                </button>
+            </div>
+            <div class="indicador-pagina">Página 6 de 10</div>
+        </div>
+        
+        <!-- Página 7: Fase 2 - Marco Teórico (Parte 3) -->
+        <div class="pagina" id="pagina7">
+            <div class="encabezado">
+                <h1>Fase 2: Marco Teórico (Continuación)</h1>
+                <h2>Dimensiones Ocultas del Poder</h2>
+            </div>
+            
+            <div class="contenido">
+                <h3>Lo que se Enseña sin Decirlo</h3>
+                
+                <div class="grid-2">
+                    <div class="tarjeta">
+                        <h4>El Currículum Oculto (Jackson, 1968)</h4>
+                        <p><strong>¿Qué es?</strong> Las lecciones no escritas, implícitas, que se aprenden por el mero hecho de estar en la escuela.</p>
+                        
+                        <h5>Ejemplos Concretos:</h5>
+                        <ul>
+                            <li>La distribución del espacio (filas de pupitres)</li>
+                            <li>El sistema de premios y castigos</li>
+                            <li>Los tiempos rígidos</li>
+                            <li>El lenguaje y gestos del docente</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tarjeta">
+                        <h4>El Currículum Nulo (Eisner, 1979)</h4>
+                        <p><strong>¿Qué es?</strong> Todo aquello que el sistema educativo <strong>decide NO enseñar</strong>.</p>
+                        
+                        <h5>Ejemplos Concretos:</h5>
+                        <ul>
+                            <li>Educación financiera</li>
+                            <li>Inteligencia emocional</li>
+                            <li>Filosofía para niños</li>
+                            <li>Historia de las minorías</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tarjeta-destacada">
+                    <h3>Reflexión Guiada</h3>
+                    <p><em>"¿Qué está aprendiendo un alumno sobre su lugar en la sociedad si siempre es evaluado con pruebas estandarizadas de opción múltiple?"</em></p>
+                    <p style="margin-top: 10px;"><em>"Si el currículum nulo de una sociedad es la 'educación emocional' y la 'historia de los pueblos originarios', ¿qué tipo de ciudadanos está formando?"</em></p>
+                </div>
+                
+                <h3>Síntesis del Marco Teórico</h3>
+                <div class="tarjeta">
+                    <ul>
+                        <li><strong>Gimeno</strong> nos dice <strong>POR QUÉ</strong> no es neutral (es una praxis y selección cultural)</li>
+                        <li><strong>Los Modelos</strong> nos muestran <strong>CÓMO</strong> se materializan distintas ideologías</li>
+                        <li><strong>Lo Oculto y lo Nulo</strong> nos revelan <strong>DÓNDE</strong> buscar las huellas del poder</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="navegacion">
+                <button class="btn btn-anterior" onclick="cambiarPagina(7, 6)">
+                    <span>←</span> Anterior
+                </button>
+                <button class="btn btn-siguiente" onclick="cambiarPagina(7, 8)">
+                    Siguiente <span>→</span>
+                </button>
+            </div>
+            <div class="indicador-pagina">Página 7 de 10</div>
+        </div>
+        
+        <!-- Página 8: Reflexión para el Debate -->
+        <div class="pagina" id="pagina8">
+            <div class="encabezado">
+                <h1>Reflexión para el Debate</h1>
+                <h2>Pregunta Central del Debate</h2>
+            </div>
+            
+            <div class="contenido">
+                <div class="reflexion-debate">
+                    <h3>Pregunta para la Reflexión Crítica</h3>
+                    <p>"Si el currículo puede ser usado para adoctrinar, ¿cómo garantizamos que sea una herramienta de emancipación y no de dominación?"</p>
+                </div>
+                
+                <h3>Dimensiones de la Pregunta</h3>
+                
+                <div class="grid-2">
+                    <div class="tarjeta">
+                        <h4>El Currículum como Instrumento de Poder</h4>
+                        <p>El conocimiento que se selecciona y transmite nunca es neutral. Refleja relaciones de poder, ideologías dominantes y proyectos políticos específicos.</p>
+                        <p><strong>Pregunta:</strong> ¿Cómo identificar y cuestionar estas relaciones de poder en nuestro currículum actual?</p>
+                    </div>
+                    
+                    <div class="tarjeta">
+                        <h4>El Papel del Docente como Mediador Crítico</h4>
+                        <p>El docente no es un mero aplicador de currículum, sino un intelectual transformador que puede cuestionar, adaptar y resignificar los contenidos.</p>
+                        <p><strong>Pregunta:</strong> ¿Qué necesitamos para formar docentes críticos y no técnicos aplicadores?</p>
+                    </div>
+                </div>
+                
+                <div class="grid-2">
+                    <div class="tarjeta">
+                        <h4>La Participación de la Comunidad Educativa</h4>
+                        <p>Un currículum emancipador requiere la participación activa de todos los actores: estudiantes, familias, comunidades y docentes.</p>
+                        <p><strong>Pregunta:</strong> ¿Cómo democratizar las decisiones curriculares?</p>
+                    </div>
+                    
+                    <div class="tarjeta">
+                        <h4>Estrategias para el Pensamiento Crítico</h4>
+                        <p>Un currículum emancipador fomenta la pregunta, la duda metódica, el análisis de múltiples perspectivas y la construcción colectiva del conocimiento.</p>
+                        <p><strong>Pregunta:</strong> ¿Qué prácticas pedagógicas concretas promueven esto?</p>
+                    </div>
+                </div>
+                
+                <div class="tarjeta-destacada">
+                    <h3>Posibles Respuestas desde la Teoría Crítica</h3>
+                    <ul>
+                        <li><strong>Transparencia:</strong> Hacer explícitos los intereses, valores y perspectivas detrás de cada selección curricular.</li>
+                        <li><strong>Pluralidad:</strong> Incluir voces, perspectivas y saberes tradicionalmente excluidos.</li>
+                        <li><strong>Problematización:</strong> Enseñar a cuestionar en lugar de enseñar respuestas únicas.</li>
+                        <li><strong>Contextualización:</strong> Conectar el conocimiento con las realidades y luchas de las comunidades.</li>
+                        <li><strong>Autonomía:</strong> Formar sujetos capaces de pensar por sí mismos, no de repetir consignas.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="navegacion">
+                <button class="btn btn-anterior" onclick="cambiarPagina(8, 7)">
+                    <span>←</span> Anterior
+                </button>
+                <button class="btn btn-siguiente" onclick="cambiarPagina(8, 9)">
+                    Siguiente <span>→</span>
+                </button>
+            </div>
+            <div class="indicador-pagina">Página 8 de 10</div>
+        </div>
+        
+        <!-- Página 9: Fase 3 - Actividad Interactiva -->
+        <div class="pagina" id="pagina9">
+            <div class="encabezado">
+                <h1>Fase 3: Actividad Interactiva</h1>
+                <h2>Mapa de Ideas Colaborativo</h2>
+            </div>
+            
+            <div class="contenido">
+                <h3>Instrucciones para la Actividad (15 minutos)</h3>
+                
+                <div class="tarjeta">
+                    <h4>Plataforma: Padlet o Jamboard</h4>
+                    <p><strong>Consigna:</strong> <em>"En el tablero, compartan un ejemplo concreto de cómo la NO NEUTRALIDAD del currículum se manifiesta en la realidad educativa."</em></p>
+                </div>
+                
+                <h3>Estructura del Tablero Colaborativo</h3>
+                
+                <div class="grid-2">
+                    <div class="tarjeta">
+                        <h4>Columna 1: Ideología</h4>
+                        <p>Ejemplos: nacionalismo, meritocracia extrema, etc.</p>
+                    </div>
+                    
+                    <div class="tarjeta">
+                        <h4>Columna 2: Cultura</h4>
+                        <p>Ejemplos: canon literario occidentalocentrista, etc.</p>
+                    </div>
+                    
+                    <div class="tarjeta">
+                        <h4>Columna 3: Política</h4>
+                        <p>Ejemplos: leyes que prohíben hablar de ciertos temas, etc.</p>
+                    </div>
+                    
+                    <div class="tarjeta">
+                        <h4>Columna 4: Pedagogía</h4>
+                        <p>Ejemplos: métodos de evaluación que premian la memorización, etc.</p>
+                    </div>
+                </div>
+                
+                <div class="tarjeta-destacada">
+                    <h3>Instrucción para Participantes</h3>
+                    <p>Cada estudiante debe colocar al menos un post-it en el tablero y comentar una contribución de sus compañeros.</p>
+                </div>
+                
+                <h3>Preparación para el Debate</h3>
+                <p>Al finalizar la actividad, el facilitador proyectará el tablero y, entre todos, clasificarán los ejemplos en las categorías establecidas. Esto proporcionará material concreto para el debate posterior.</p>
+            </div>
+            
+            <div class="navegacion">
+                <button class="btn btn-anterior" onclick="cambiarPagina(9, 8)">
+                    <span>←</span> Anterior
+                </button>
+                <button class="btn btn-siguiente" onclick="cambiarPagina(9, 10)">
+                    Siguiente <span>→</span>
+                </button>
+            </div>
+            <div class="indicador-pagina">Página 9 de 10</div>
+        </div>
+        
+        <!-- Página 10: Fase 4 y 5 - Debate y Cierre -->
+        <div class="pagina" id="pagina10">
+            <div class="encabezado">
+                <h1>Fase 4 y 5: Debate y Cierre</h1>
+                <h2>Discusión Profunda y Reflexión Final</h2>
+            </div>
+            
+            <div class="contenido">
+                <h3>Fase 4: Debate con Ficha de Trabajo (30 minutos)</h3>
+                
+                <div class="ficha-trabajo">
+                    <h3>Ficha de Trabajo - Debate</h3>
+                    
+                    <div class="pregunta">
+                        <h4>Parte I - Reflexión Individual (5 min)</h4>
+                        <p>Revisen y completen brevemente sus respuestas escritas previamente.</p>
+                    </div>
+                    
+                    <div class="pregunta">
+                        <h4>Parte II - Debate Guiado (25 min)</h4>
+                        <p><strong>Preguntas para guiar el debate:</strong></p>
+                        <ul>
+                            <li>Partiendo del Padlet, ¿cuál es el ejemplo más potente de no-neutralidad y por qué?</li>
+                            <li>Si Stenhouse propone al docente como investigador, ¿qué necesitamos para que esto sea una realidad?</li>
+                            <li>¿Puede un currículum por competencias ser crítico, o está condenado a ser funcional al mercado?</li>
+                            <li>¿Cómo responder a la pregunta: "Si el currículo puede ser usado para adoctrinar, ¿cómo garantizamos que sea una herramienta de emancipación?"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pregunta">
+                        <h4>Parte III - Cierre y Reflexión Personal</h4>
+                        <p><strong>Preguntas finales:</strong></p>
+                        <ul>
+                            <li>¿Cuál es la idea más importante que te llevas de este debate?</li>
+                            <li>¿Qué cambio concreto propondrías en el currículum de tu área?</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3>Fase 5: Cierre y Reflexión Final (10 minutos)</h3>
+                
+                <div class="tarjeta-destacada">
+                    <h3>Mensaje de Cierre</h3>
+                    <p><em>"Hoy hemos visto que el currículum es un campo de batalla ideológico. No es una técnica aséptica. Como futuros educadores, su rol no es solo aplicar un plan, sino leer críticamente el currículum prescrito, hacer visible el oculto, cuestionar el nulo y, en su práctica diaria, negociar y reinventar el currículum en vivo con sus estudiantes."</em></p>
+                    <p style="margin-top: 15px; font-weight: bold;">La pregunta ya no es si el currículum es neutral, sino ¿a qué intereses sirve el currículum que estamos implementando?</p>
+                </div>
+            </div>
+            
+            <div class="navegacion">
+                <button class="btn btn-anterior" onclick="cambiarPagina(10, 9)">
+                    <span>←</span> Anterior
+                </button>
+                <button class="btn btn-siguiente" onclick="cambiarPagina(10, 1)">
+                    Volver al Inicio <span>↺</span>
+                </button>
+            </div>
+            <div class="indicador-pagina">Página 10 de 10</div>
+        </div>
+    </div>
+
+    <script>
+        function cambiarPagina(actual, siguiente) {
+            // Ocultar página actual
+            document.getElementById('pagina' + actual).classList.remove('activa');
+            
+            // Mostrar página siguiente
+            document.getElementById('pagina' + siguiente).classList.add('activa');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Crítica: Modelos Curriculares y Proyectos de Sociedad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .page {
+            background: white;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            page-break-after: always;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2575fc;
+        }
+        
+        .header h1 {
+            color: #2575fc;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .header h2 {
+            color: #6a11cb;
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+        
+        .university-info {
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .intro {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        
+        .intro p {
+            margin-bottom: 10px;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .card {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .card h3 {
+            color: #2575fc;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .card.highlight {
+            border-left: 5px solid #6a11cb;
+            background: #f8f9fa;
+        }
+        
+        .political-context {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .political-context h4 {
+            color: #856404;
+            margin-bottom: 8px;
+        }
+        
+        .author {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .key-points {
+            margin: 15px 0;
+        }
+        
+        .key-points li {
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .comparison-table th {
+            background: #2575fc;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .quote-box {
+            background: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .quote-author {
+            text-align: right;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .reflection {
+            background: #e8f5e9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .reflection h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        
+        .quick-reference {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .reference-item {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #2575fc;
+        }
+        
+        .reference-item h4 {
+            color: #6a11cb;
+            margin-bottom: 8px;
+        }
+        
+        .btn-print {
+            background: #2575fc;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            borderRadius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            font-size: 1rem;
+        }
+        
+        .btn-print:hover {
+            background: #1c68e0;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .page {
+                box-shadow: none;
+                margin-bottom: 0;
+            }
+            
+            .btn-print {
+                display: none;
+            }
+            
+            .card {
+                break-inside: avoid;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-reference {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Página 1: Modelos y sus Proyectos Políticos -->
+        <div class="page">
+            <div class="header">
+                <h1>Guía Crítica: Modelos Curriculares y Proyectos de Sociedad</h1>
+                <h2>¿A qué intereses sirve el currículo que implementamos?</h2>
+                <div class="university-info">
+                    Universidad José María Vargas - Currículo Básico Nacional<br>
+                    Docente: Miguel Subero
+                </div>
+            </div>
+            
+            <div class="intro">
+                <p><strong>El currículo nunca es neutral.</strong> Cada modelo responde a una visión específica de sociedad, ciudadanía y desarrollo. Esta guía te ayudará a identificar los proyectos políticos detrás de los diferentes enfoques curriculares.</p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="card highlight">
+                    <h3>Tyler (1949) - Modelo Técnico</h3>
+                    <div class="author">"¿Logramos los objetivos?"</div>
+                    
+                    <div class="political-context">
+                        <h4>Proyecto de Sociedad:</h4>
+                        <p>Eficiencia, control y estandarización. Surge en la posguerra con enfoque industrial y tecnocrático.</p>
+                    </div>
+                    
+                    <div class="key-points">
+                        <h4>Características Ideológicas:</h4>
+                        <ul>
+                            <li>Visión funcionalista de la educación</li>
+                            <li>Preparación para el mercado laboral</li>
+                            <li>Control centralizado del aprendizaje</li>
+                            <li>Énfasis en resultados medibles</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="key-points">
+                        <h4>Preguntas Críticas:</h4>
+                        <ul>
+                            <li>¿Quién define los objetivos y con qué intereses?</li>
+                            <li>¿Qué tipo de ciudadano forma este modelo?</li>
+                            <li>¿Qué conocimientos se privilegian y cuáles se excluyen?</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card highlight">
+                    <h3>Taba (1962) - Modelo Cultural</h3>
+                    <div class="author">"¿Cómo aprenden mis estudiantes?"</div>
+                    
+                    <div class="political-context">
+                        <h4>Proyecto de Sociedad:</h4>
+                        <p>Adaptación cultural y desarrollo contextual. Respuesta a diversidad y necesidades locales.</p>
+                    </div>
+                    
+                    <div class="key-points">
+                        <h4>Características Ideológicas:</h4>
+                        <ul>
+                            <li>Valoración del contexto cultural</li>
+                            <li>Mayor autonomía institucional</li>
+                            <li>Enfoque en procesos sobre productos</li>
+                            <li>Integración de saberes locales</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="key-points">
+                        <h4>Preguntas Críticas:</h4>
+                        <ul>
+                            <li>¿Realmente se respeta la diversidad cultural?</li>
+                            <li>¿O se homogeniza bajo apariencia de flexibilidad?</li>
+                            <li>¿Quiénes participan en la definición de necesidades?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quote-box">
+                "Ningún currículo es neutral. Detrás de cada selección de contenidos, metodologías y evaluaciones hay un proyecto de sociedad, una idea de ciudadano y una concepción de poder."
+            </div>
+            
+            <div class="reflection">
+                <h3>Reflexión para el Contexto Venezolano</h3>
+                <p>¿Qué modelos has identificado en las diferentes reformas curriculares en Venezuela? ¿Cómo han reflejado los proyectos políticos de cada gobierno? ¿Qué tipo de ciudadano busca formar el currículo actual?</p>
+            </div>
+        </div>
+        
+        <!-- Página 2: Modelos Críticos y su Potencial Transformador -->
+        <div class="page">
+            <div class="header">
+                <h1>Modelos Críticos y su Potencial Transformador</h1>
+                <h2>Currículos para la Emancipación vs. Currículos para la Dominación</h2>
+            </div>
+            
+            <div class="intro">
+                <p>Algunos modelos cuestionan abiertamente la neutralidad del currículo y proponen enfoques para la transformación social.</p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="card">
+                    <h3>Stenhouse (1975) - Modelo de Proceso</h3>
+                    <div class="author">"¿Qué estamos descubriendo?"</div>
+                    
+                    <div class="political-context">
+                        <h4>Proyecto de Sociedad:</h4>
+                        <p>Ciudadanía crítica y democrática. Educación como espacio de investigación y cuestionamiento.</p>
+                    </div>
+                    
+                    <div class="key-points">
+                        <h4>Características Ideológicas:</h4>
+                        <ul>
+                            <li>Docente como investigador en el aula</li>
+                            <li>Conocimiento como construcción social</li>
+                            <li>Énfasis en el pensamiento crítico</li>
+                            <li>Flexibilidad y adaptación contextual</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="key-points">
+                        <h4>Potencial Transformador:</h4>
+                        <ul>
+                            <li>Empodera a docentes y estudiantes</li>
+                            <li>Cuestiona relaciones de poder establecidas</li>
+                            <li>Promueve la autonomía intelectual</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Gimeno Sacristán - Perspectiva Crítica</h3>
+                    <div class="author">"El currículo como selección cultural"</div>
+                    
+                    <div class="political-context">
+                        <h4>Proyecto de Sociedad:</h4>
+                        <p>Justicia social y equidad. Educación como práctica de libertad y cuestionamiento del poder.</p>
+                    </div>
+                    
+                    <div class="key-points">
+                        <h4>Conceptos Clave:</h4>
+                        <ul>
+                            <li>Currículo formal, oculto y nulo</li>
+                            <li>No neutralidad del conocimiento escolar</li>
+                            <li>Currículo como campo de batalla ideológico</li>
+                            <li>Selección cultural como acto político</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="key-points">
+                        <h4>Potencial Transformador:</h4>
+                        <ul>
+                            <li>Hace visible lo invisible (currículo oculto)</li>
+                            <li>Cuestiona exclusiones (currículo nulo)</li>
+                            <li>Promueve lectura crítica del currículo oficial</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Modelo</th>
+                        <th>Visión de Ciudadano</th>
+                        <th>Relación con el Poder</th>
+                        <th>Potencial Transformador</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Tyler</strong></td>
+                        <td>Ciudadano funcional al sistema</td>
+                        <td>Reproduce estructuras de poder</td>
+                        <td>Bajo - Mantenimiento del status quo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Taba</strong></td>
+                        <td>Ciudadano adaptado a su contexto</td>
+                        <td>Negocia con el poder establecido</td>
+                        <td>Medio - Adaptación contextual</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stenhouse</strong></td>
+                        <td>Ciudadano crítico y autónomo</td>
+                        <td>Cuestiona relaciones de poder</td>
+                        <td>Alto - Transformación social</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gimeno Sacristán</strong></td>
+                        <td>Ciudadano consciente y emancipado</td>
+                        <td>Deconstruye mecanismos de poder</td>
+                        <td>Alto - Liberación y justicia</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="quick-reference">
+                <div class="reference-item">
+                    <h4>Para el Debate</h4>
+                    <p>¿Puede un currículo ser realmente neutral?<br>
+                    ¿Qué modelo favorece más la emancipación?<br>
+                    ¿Cómo ejerces tu agencia curricular?</p>
+                </div>
+                
+                <div class="reference-item">
+                    <h4>En el Aula Venezolana</h4>
+                    <p>• Identifica el proyecto político detrás del currículo actual<br>
+                    • Ejerce tu capacidad de adaptación y resistencia<br>
+                    • Promueve lectura crítica con tus estudiantes</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Página 3: El Docente como Mediador Crítico -->
+        <div class="page">
+            <div class="header">
+                <h1>El Docente como Mediador Crítico del Currículo</h1>
+                <h2>Estrategias para la Práctica Transformadora</h2>
+            </div>
+            
+            <div class="intro">
+                <p>Como futuro docente, no eres un simple aplicador de currículos. Eres un intelectual transformador que puede leer, cuestionar y resignificar el currículo oficial.</p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="card highlight">
+                    <h3>Leer el Currículo Críticamente</h3>
+                    
+                    <div class="key-points">
+                        <h4>Preguntas para Analizar Cualquier Currículo:</h4>
+                        <ul>
+                            <li>¿Qué conocimientos se incluyen y cuáles se excluyen?</li>
+                            <li>¿A qué intereses sirve esta selección?</li>
+                            <li>¿Qué tipo de ciudadano busca formar?</li>
+                            <li>¿Qué voces están presentes y cuáles ausentes?</li>
+                            <li>¿Cómo se evalúa y qué se valora con esa evaluación?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="key-points">
+                        <h4>Ejercicio Práctico:</h4>
+                        <p>Analiza el currículo oficial de tu área identificando:</p>
+                        <ul>
+                            <li><strong>Currículo formal:</strong> Lo que explícitamente se dice</li>
+                            <li><strong>Currículo oculto:</strong> Los valores y normas implícitas</li>
+                            <li><strong>Currículo nulo:</strong> Lo que deliberadamente se omite</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card highlight">
+                    <h3>Estrategias de Mediación Curricular</h3>
+                    
+                    <div class="key-points">
+                        <h4>Para la Práctica Docente:</h4>
+                        <ul>
+                            <li><strong>Contextualización:</strong> Adaptar contenidos a la realidad local</li>
+                            <li><strong>Problemización:</strong> Enseñar a cuestionar en lugar de repetir</li>
+                            <li><strong>Inclusión:</strong> Incorporar voces y saberes tradicionalmente excluidos</li>
+                            <li><strong>Transparencia:</strong> Hacer explícitos los intereses detrás del conocimiento</li>
+                            <li><strong>Participación:</strong> Involucrar a estudiantes en decisiones curriculares</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="key-points">
+                        <h4>Resistencia Creativa:</h4>
+                        <ul>
+                            <li>Usar los espacios de autonomía curricular</li>
+                            <li>Complementar el currículo oficial con perspectivas críticas</li>
+                            <li>Crear contra-narrativas con tus estudiantes</li>
+                            <li>Documentar y compartir tus prácticas transformadoras</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reflection">
+                <h3>Tu Rol como Futuro Docente</h3>
+                <p><strong>No eres un técnico aplicador</strong> de currículos. Eres un <strong>mediador crítico</strong> que puede:</p>
+                <ul>
+                    <li><strong>Leer entre líneas</strong> el currículo prescrito</li>
+                    <li><strong>Hacer visible</strong> el currículo oculto</li>
+                    <li><strong>Cuestionar</strong> el currículo nulo</li>
+                    <li><strong>Negociar y reinventar</strong> el currículo en la práctica</li>
+                </ul>
+                <p style="margin-top: 15px;">La pregunta ya no es si el currículo es neutral, sino: <strong>¿a qué intereses sirve el currículo que estás implementando y cómo puedes transformarlo para servir a la emancipación de tus estudiantes?</strong></p>
+            </div>
+            
+            <div class="quote-box">
+                "El educador ya no es sólo el que educa, sino aquel que, mientras educa, es educado a través del diálogo con el educando."
+                <div class="quote-author">- Paulo Freire</div>
+            </div>
+        </div>
+        
+        <button class="btn-print" onclick="window.print()">Imprimir Guía Completa</button>
+    </div>
+
+    <script>
+        // Añadir la fecha actual automáticamente
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const dateString = today.toLocaleDateString('es-ES', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            const dateElement = document.createElement('div');
+            dateElement.style.textAlign = 'center';
+            dateElement.style.marginTop = '10px';
+            dateElement.style.fontStyle = 'italic';
+            dateElement.style.color = '#666';
+            dateElement.textContent = `Material de estudio - ${dateString}`;
+            
+            document.querySelector('.header').appendChild(dateElement);
+        });
+    </script>
+</body>
+</html>
