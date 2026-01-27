@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currículo de Educación Básica - Universidad José María Vargas</title>
     <style>
-        /* Estilos heredados y mejorados */
+        /* Estilos Generales */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
         body {
@@ -17,6 +17,7 @@
         
         .container { max-width: 1200px; margin: 0 auto; }
         
+        /* Encabezado */
         header {
             text-align: center;
             padding: 30px;
@@ -39,6 +40,7 @@
         header h2 { color: #6a11cb; font-size: 1.5rem; font-weight: 500; margin-bottom: 15px; }
         .subtitulo { color: #666; font-size: 1.1rem; max-width: 800px; margin: 0 auto 10px; }
         
+        /* Layout Principal */
         .contenido-principal {
             display: grid;
             grid-template-columns: 2.5fr 1fr;
@@ -48,19 +50,18 @@
         
         @media (max-width: 900px) { .contenido-principal { grid-template-columns: 1fr; } }
         
-        /* TARJETA PROYECTO (DESTACADA) */
+        /* Tarjeta Proyecto (Destacada) */
         .tarjeta-proyecto {
             background-color: white;
             border-radius: 15px;
             padding: 30px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            border-left: 6px solid #ff5e62; /* Color distintivo para proyecto */
+            border-left: 6px solid #ff5e62;
             margin-bottom: 30px;
             position: relative;
         }
         
         .tarjeta-proyecto h3 { color: #d93025; font-size: 1.8rem; margin-bottom: 15px; display: flex; align-items: center; }
-        .tarjeta-proyecto h3::before { content: "🚀"; margin-right: 10px; }
         
         .proyecto-grid {
             display: grid;
@@ -78,7 +79,7 @@
         .criterio-box h4 { color: #c0392b; margin-bottom: 5px; font-size: 0.95rem; }
         .criterio-box p { font-size: 0.9rem; color: #555; }
         
-        /* TARJETAS SEMANALES */
+        /* Grid de Semanas */
         .tarjetas-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -126,6 +127,7 @@
         .tarjeta h3 { color: #2575fc; font-size: 1.2rem; margin-bottom: 10px; margin-top: 15px; }
         .tarjeta p { color: #555; font-size: 0.95rem; line-height: 1.5; margin-bottom: 15px; flex-grow: 1; }
         
+        /* Botones */
         .btn {
             display: block;
             background: #2575fc;
@@ -139,10 +141,24 @@
             margin-top: auto;
         }
         .btn:hover { background: #1a54b9; }
+        
         .btn-proyecto { background: #d93025; width: 100%; margin-top: 20px; padding: 15px; font-size: 1.1rem; }
         .btn-proyecto:hover { background: #b31412; }
+        
+        /* Estilos para Botones Complementarios (Sidebar) */
+        .btn-recurso {
+            background: #6a11cb; /* Morado para diferenciar */
+            text-align: left;
+            padding: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+        .btn-recurso:hover { background: #4a0ca3; transform: translateX(5px); }
+        .icon-btn { margin-right: 10px; font-size: 1.2rem; }
 
-        /* SIDEBAR */
+        /* Sidebar */
         .sidebar {
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
@@ -166,38 +182,36 @@
             <h1>Currículo de Educación Básica</h1>
             <h2>Universidad José María Vargas | Facultad de Educación</h2>
             <p class="subtitulo"><strong>Profesor:</strong> Lcdo. Miguel Ángel Subero Arguinzones</p>
-            <p class="subtitulo" style="font-size: 0.9rem;">Modalidad: Mixta (8 Semanas) | Repositorio de Materiales y Planificación</p>
+            <p class="subtitulo" style="font-size: 0.9rem;">Modalidad: Mixta (8 Semanas) | Repositorio de Materiales</p>
         </header>
         
         <div class="contenido-principal">
             <div>
                 <div class="tarjeta-proyecto">
                     <div class="badge-fecha" style="background:#ffebee; color:#c62828;">Semana 8</div>
-                    <h3>Proyecto Final: Microcurrículo Integrado</h3>
-                    <p><strong>Objetivo:</strong> Diseñar un microcurrículo integrado que incluya instrumentos de evaluación y un componente PEIC, demostrando dominio teórico y práctico. (Valor Total: 450 pts)</p>
+                    <h3>🚀 Proyecto Final: Microcurrículo Integrado</h3>
+                    <p><strong>Objetivo:</strong> Diseñar un microcurrículo integrado que incluya instrumentos de evaluación y un componente PEIC. (Valor Total: 450 pts)</p>
                     
                     <div class="proyecto-grid">
                         <div class="criterio-box">
-                            <h4>1. Coherencia Curricular (80 pts)</h4>
-                            <p>Alineación lógica entre objetivos, contenidos y estrategias.</p>
+                            <h4>1. Coherencia (80 pts)</h4>
+                            <p>Alineación lógica entre objetivos y estrategias.</p>
                         </div>
                         <div class="criterio-box">
                             <h4>2. Metodología (60 pts)</h4>
-                            <p>Diseño accesible, claro y organizado (Normas APA).</p>
+                            <p>Diseño accesible y normas APA.</p>
                         </div>
                         <div class="criterio-box">
                             <h4>3. Evaluación (40 pts)</h4>
-                            <p>Diseño de instrumentos coherentes con las competencias.</p>
+                            <p>Instrumentos coherentes con competencias.</p>
                         </div>
                         <div class="criterio-box">
                             <h4>4. Componente PEIC (40 pts)</h4>
-                            <p>Integración efectiva con la vinculación escuela-comunidad.</p>
+                            <p>Vinculación escuela-comunidad.</p>
                         </div>
                     </div>
                     
-                    <p style="font-size: 0.9rem; color: #666; margin-top: 10px;"><em>*Incluye Defensa Oral (200 pts) sobre dominio conceptual y argumentación pedagógica.</em></p>
-                    
-                    <a href="clase-semana-8.html" class="btn btn-proyecto">Ver Detalles Completos y Entrega del Proyecto</a>
+                    <a href="clase-semana-8.html" class="btn btn-proyecto">Ver Detalles y Entrega del Proyecto</a>
                 </div>
 
                 <h3 style="color: white; margin-bottom: 20px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Planificación Semanal</h3>
@@ -206,31 +220,31 @@
                     <div class="tarjeta">
                         <div class="badge-fecha">19/10</div>
                         <h3>Semana 1: Introducción</h3>
-                        <p>Concepto, componentes y modelos clásicos (Tyler, Taba, Stenhouse). Debate guiado y lectura crítica.</p>
+                        <p>Concepto, componentes y modelos clásicos (Tyler, Taba, Stenhouse).</p>
                         <div class="badge-eval eval-hilo">Hilo 1 (20 pts)</div>
                         <a href="clase-semana-1.html" class="btn">Ver Clase 1</a>
                     </div>
 
                     <div class="tarjeta">
                         <div class="badge-fecha">26/10</div>
-                        <h3>Semana 2: Evolución Histórica</h3>
-                        <p>Línea de tiempo colaborativa y análisis político de las reformas curriculares en Venezuela.</p>
+                        <h3>Semana 2: Historia</h3>
+                        <p>Evolución histórica y análisis político de las reformas.</p>
                         <div class="badge-eval eval-tarea">Tarea 1 (40 pts)</div>
                         <a href="clase-semana-2.html" class="btn">Ver Clase 2</a>
                     </div>
 
                     <div class="tarjeta">
                         <div class="badge-fecha">02/11</div>
-                        <h3>Semana 3: CBN (1997)</h3>
-                        <p>Fundamentos, ejes transversales y estructura del Currículo Básico Nacional de 1997.</p>
+                        <h3>Semana 3: CBN 1997</h3>
+                        <p>Fundamentos y estructura del Currículo Básico Nacional.</p>
                         <div class="badge-eval eval-hilo">Hilo 2 (20 pts)</div>
                         <a href="clase-semana-3.html" class="btn">Ver Clase 3</a>
                     </div>
 
                     <div class="tarjeta">
                         <div class="badge-fecha">09/11</div>
-                        <h3>Semana 4: CNB (2007)</h3>
-                        <p>Ideología, pilares y ejes integradores del Currículo Nacional Bolivariano. Comparativa.</p>
+                        <h3>Semana 4: CNB 2007</h3>
+                        <p>Ideología y pilares del Currículo Nacional Bolivariano.</p>
                         <div class="badge-eval eval-examen">Examen 1 (120 pts)</div>
                         <a href="clase-semana-4.html" class="btn">Ver Clase 4</a>
                     </div>
@@ -238,7 +252,7 @@
                     <div class="tarjeta">
                         <div class="badge-fecha">16/11</div>
                         <h3>Semana 5: Competencias</h3>
-                        <p>Taller de redacción de competencias e indicadores (Ser, Saber, Hacer). Áreas de aprendizaje.</p>
+                        <p>Taller de redacción de competencias e indicadores.</p>
                         <div class="badge-eval eval-tarea">Tarea 2 (40 pts)</div>
                         <a href="clase-semana-5.html" class="btn">Ver Clase 5</a>
                     </div>
@@ -246,15 +260,15 @@
                     <div class="tarjeta">
                         <div class="badge-fecha">23/11</div>
                         <h3>Semana 6: Evaluación</h3>
-                        <p>Diseño de instrumentos, estrategias metodológicas y elaboración de rúbricas.</p>
+                        <p>Diseño de instrumentos y elaboración de rúbricas.</p>
                         <div class="badge-eval eval-hilo">Hilo 3 (20 pts)</div>
                         <a href="clase-semana-6.html" class="btn">Ver Clase 6</a>
                     </div>
 
                     <div class="tarjeta">
                         <div class="badge-fecha">30/11</div>
-                        <h3>Semana 7: PEIC y Comunidad</h3>
-                        <p>Gestión curricular contextualizada. Diseño de planes vinculados al contexto educativo.</p>
+                        <h3>Semana 7: PEIC</h3>
+                        <p>Gestión curricular contextualizada y comunidad.</p>
                         <div class="badge-eval eval-tarea">Tarea 3 (40 pts)</div>
                         <a href="clase-semana-7.html" class="btn">Ver Clase 7</a>
                     </div>
@@ -262,44 +276,51 @@
             </div>
             
             <div class="sidebar">
-                <h3>📚 Rúbricas Generales</h3>
                 
-                <div class="rubrica-mini">
-                    <h4>Hilos de Discusión (20 pts)</h4>
-                    <ul>
-                        <li><strong>Pertinencia (20):</strong> Argumentos con ejemplos y fuentes.</li>
-                        <li><strong>Interacción:</strong> Responder y retroalimentar a compañeros.</li>
-                    </ul>
+                <div style="margin-bottom: 30px;">
+                    <h3>📂 Material de Apoyo</h3>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 10px;">Recursos transversales:</p>
+                    
+                    <a href="presentacion-curriculo.html" class="btn btn-recurso">
+                        <span class="icon-btn">🖥️</span> Presentación Central
+                    </a>
+                    <a href="modelos-curriculares.html" class="btn btn-recurso">
+                        <span class="icon-btn">📑</span> Modelos Curriculares
+                    </a>
+                    <a href="analisis-critico.html" class="btn btn-recurso">
+                        <span class="icon-btn">🔍</span> Análisis Crítico
+                    </a>
+                    <a href="caja-herramientas.html" class="btn btn-recurso">
+                        <span class="icon-btn">🛠️</span> Caja de Herramientas
+                    </a>
                 </div>
 
+                <h3>📊 Rúbricas Generales</h3>
+                <div class="rubrica-mini">
+                    <h4>Hilos (20 pts)</h4>
+                    <ul>
+                        <li>Argumentos con fuentes.</li>
+                        <li>Interacción con compañeros.</li>
+                    </ul>
+                </div>
                 <div class="rubrica-mini">
                     <h4>Tareas (40 pts)</h4>
                     <ul>
-                        <li><strong>Instrucciones (40):</strong> Precisión total.</li>
-                        <li><strong>Análisis (30):</strong> Profundo y crítico.</li>
-                        <li><strong>APA (20):</strong> Correcto y ordenado.</li>
+                        <li>Precisión en instrucciones.</li>
+                        <li>Análisis crítico y APA.</li>
                     </ul>
                 </div>
 
                 <h3>📅 Cronograma Rápido</h3>
                 <ul style="list-style: none; font-size: 0.9rem; color: #555;">
-                    <li style="padding:8px 0; border-bottom:1px solid #eee;">Week 1: Hilo 1 (19/10)</li>
-                    <li style="padding:8px 0; border-bottom:1px solid #eee;">Week 2: Tarea 1 (26/10)</li>
-                    <li style="padding:8px 0; border-bottom:1px solid #eee;">Week 3: Hilo 2 (02/11)</li>
-                    <li style="padding:8px 0; border-bottom:1px solid #eee;"><strong>Week 4: Examen 1 (09/11)</strong></li>
-                    <li style="padding:8px 0; border-bottom:1px solid #eee;">Week 5: Tarea 2 (16/11)</li>
-                    <li style="padding:8px 0; border-bottom:1px solid #eee;">Week 6: Hilo 3 (23/11)</li>
-                    <li style="padding:8px 0; border-bottom:1px solid #eee;">Week 7: Tarea 3 (30/11)</li>
+                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S1: Hilo 1 (19/10)</li>
+                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S2: Tarea 1 (26/10)</li>
+                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S3: Hilo 2 (02/11)</li>
+                    <li style="padding:5px 0; border-bottom:1px solid #eee;"><strong>S4: Examen 1 (09/11)</strong></li>
+                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S5: Tarea 2 (16/11)</li>
+                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S6: Hilo 3 (23/11)</li>
+                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S7: Tarea 3 (30/11)</li>
                 </ul>
-
-                <div style="margin-top: 30px;">
-                    <h3>Recursos de Apoyo</h3>
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <a href="#" class="btn" style="background:#6a11cb; font-size:0.9rem;">📄 Guía CBN 1997</a>
-                        <a href="#" class="btn" style="background:#6a11cb; font-size:0.9rem;">📄 Documento CNB 2007</a>
-                        <a href="#" class="btn" style="background:#6a11cb; font-size:0.9rem;">🛠️ Plantillas APA</a>
-                    </div>
-                </div>
             </div>
         </div>
         
