@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 4: Síntesis Curricular (CBN vs. CNB) y Evaluación</title>
+    <style>
+        :root {
+            --primary: #2575fc;
+            --secondary: #6a11cb;
+            --accent1: #ff9800;
+            --accent2: #4caf50;
+            --light: #f8f9fa;
+            --dark: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #e0e0e0;
+        }
+        
+        .class-badge {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        
+        .objective-box {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .future-vision {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #9c27b0;
+            text-align: center;
+        }
+        
+        .agenda-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .agenda-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .agenda-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .agenda-number {
+            background: var(--primary);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 10px;
+            font-size: 1rem;
+        }
+        
+        .content-section {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .comparison-section {
+            background: #fff3e0;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid var(--accent1);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .card-cbn {
+            border-top: 5px solid var(--primary);
+        }
+        
+        .card-cnb {
+            border-top: 5px solid var(--secondary);
+        }
+        
+        .reflection-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent2);
+        }
+        
+        .exam-section {
+            background: #e8f5e9;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid var(--accent2);
+        }
+        
+        .activity-timer {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 117, 252, 0.3);
+        }
+        
+        .btn-exam {
+            background: linear-gradient(135deg, var(--accent2) 0%, #2e7d32 100%);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .connection-badge {
+            display: inline-block;
+            background: #9c27b0;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin: 0 5px 5px 0;
+        }
+        
+        .micro-project-preview {
+            background: #f3e5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px dashed #9c27b0;
+        }
+        
+        @media (max-width: 768px) {
+            .agenda-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="class-badge">CLASE 4 - SÍNTESIS CURRICULAR Y EVALUACIÓN</div>
+            <h1>Del CBN al CNB: Síntesis Curricular y Evaluación</h1>
+            <h2>Preparación para el Examen 1 y Proyecto Final</h2>
+        </div>
+
+        <!-- OBJETIVO -->
+        <div class="objective-box">
+            <h3>🎯 Objetivo de esta Clase</h3>
+            <p>Sintetizar y consolidar la comprensión de la evolución curricular venezolana (CBN 1997 al CNB 2007) a través de la comparación crítica de sus fundamentos, roles y estructuras, culminando con la aplicación del Examen 1 (120 pts).</p>
+        </div>
+
+        <!-- VISIÓN FUTURA -->
+        <div class="future-vision">
+            <h3>🌟 Mirada al Futuro: Conectando con Nuestro Proyecto Final</h3>
+            <p>Todo el análisis que hemos realizado sobre el CBN y el CNB no es solo para el examen de hoy. Están construyendo la base teórica y crítica esencial para el reto culminante de este curso: el diseño de su propio microcurrículo. Cada diferencia que analicemos, cada fortaleza y debilidad que identifiquen, será una herramienta en su caja de recursos para crear una propuesta curricular coherente, innovadora y fundamentada.</p>
+        </div>
+
+        <!-- AGENDA -->
+        <div class="content-section">
+            <h3>📋 Agenda de la Clase</h3>
+            <div class="agenda-grid">
+                <div class="agenda-item">
+                    <div class="agenda-number">1</div>
+                    <h4>Retroalimentación Express</h4>
+                    <p>Validación de reflexiones previas</p>
+                    <div class="activity-timer">10 min</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">2</div>
+                    <h4>Cuadro Comparativo Final</h4>
+                    <p>Repaso crítico CBN vs. CNB</p>
+                    <div class="activity-timer">20 min</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">3</div>
+                    <h4>Sesión de Dudas Rápidas</h4>
+                    <p>Aclaración de conceptos clave</p>
+                    <div class="activity-timer">10 min</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">4</div>
+                    <h4>Examen 1 (120 pts)</h4>
+                    <p>Evaluación formal de la Unidad</p>
+                    <div class="activity-timer">40 min</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RETROALIMENTACIÓN EXPRESS -->
+        <div class="content-section">
+            <h3>🔄 Retroalimentación Express</h3>
+            <p>Retomemos rápidamente las excelentes reflexiones que desarrollaron la clase pasada. Sus aportes son la mejor base para el examen de hoy y, más importante, son <strong>decisiones de diseño que pronto tomarán en su propio proyecto</strong>.</p>
+            
+            <div class="reflection-card">
+                <h4>🔄 Síntesis del Rol Docente</h4>
+                <p><strong>Docente Facilitador (CBN):</strong> Guía, mediador, centrado en el <strong>aula</strong> y el aprendizaje activo.</p>
+                <p><strong>Docente Transformador Social (CNB):</strong> Agente de cambio, vincula el <strong>aula con la comunidad</strong>, forma conciencia crítica para la transformación social.</p>
+                <p><em>Punto de Aclaración:</em> El rol transformador se confunde a veces con ser un "operador político", pero su esencia pedagógica es formar ciudadanos críticos y comprometidos, no adoctrinar.</p>
+                <div class="connection-badge">Conecta con Proyecto Final</div>
+                <div class="micro-project-preview">
+                    <strong>En su microcurrículo:</strong> Tendrán que definir qué tipo de docente presuppone su diseño: ¿un facilitador de aprendizajes, un transformador social, o una integración de ambos roles? Su reflexión de hoy es un primer borrador de esa decisión.
+                </div>
+            </div>
+            
+            <div class="reflection-card">
+                <h4>🚧 Síntesis de los Desafíos del PAC</h4>
+                <p><strong>Desafío Principal:</strong> Limitación de <strong>recursos</strong> (materiales y humanos).</p>
+                <p><strong>Desafío Clave:</strong> Dificultad para <strong>vincularse y coordinar</strong> con la comunidad (familias, instituciones) y la falta de motivación o comprensión de algunos actores sobre la importancia de la educación.</p>
+                <div class="connection-badge">Conecta con Proyecto Final</div>
+                <div class="micro-project-preview">
+                    <strong>En su microcurrículo:</strong> Los desafíos reales que identificaron, como la vinculación con la comunidad o la falta de recursos, son <strong>problemas de diseño curricular auténticos</strong>. Su proyecto final será una oportunidad para proponer soluciones creativas a estos mismos desafíos.
+                </div>
+            </div>
+        </div>
+
+        <!-- CUADRO COMPARATIVO FINAL -->
+        <div class="comparison-section">
+            <h3>📊 Cuadro Comparativo Final: CBN vs. CNB</h3>
+            <p>Enfatizar que este cuadro es su "caja de herramientas" para el diseño curricular.</p>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card card-cbn">
+                    <h4>📘 CBN 1997</h4>
+                    <ul>
+                        <li><strong>Enfoque:</strong> Humanista-democrático</li>
+                        <li><strong>Ejes:</strong> Transversales</li>
+                        <li><strong>Evaluación:</strong> Continua y formativa</li>
+                        <li><strong>Rol docente:</strong> Facilitador</li>
+                        <li><strong>Proyectos:</strong> Pedagógicos de aula</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card card-cnb">
+                    <h4>📗 CNB 2007</h4>
+                    <ul>
+                        <li><strong>Enfoque:</strong> Socialista bolivariano</li>
+                        <li><strong>Ejes:</strong> Integradores</li>
+                        <li><strong>Evaluación:</strong> Integral y cualitativa</li>
+                        <li><strong>Rol docente:</strong> Transformador social</li>
+                        <li><strong>Proyectos:</strong> De aprendizaje comunitario</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                <h4>🔍 Reflexión Crítica Guiada & Conexión con el Proyecto Final</h4>
+                <div class="reflection-card">
+                    <h5>Enfoque Ideológico</h5>
+                    <p><strong>¿Por qué este cambio es el más importante?</strong> Cambia el <strong>fin último</strong> de la educación: de formar al <strong>individuo</strong> a construir un <strong>modelo de sociedad específico</strong>.</p>
+                    <div class="connection-badge">Conecta con Proyecto Final</div>
+                    <p><em>Al diseñar su microcurrículo, podrán elegir con conciencia qué enfoque (o qué fusión de ellos) fundamenta su propuesta. No es una elección aleatoria, es una decisión filosófica.</em></p>
+                </div>
+                
+                <div class="reflection-card">
+                    <h5>Ejes Curriculares</h5>
+                    <p><strong>¿"Atraviesan" o "estructuran"?</strong> Los Ejes Integradores <strong>estructuran</strong> el currículo para que lo social, político y ambiental sea su <strong>núcleo</strong>, no solo un tema que lo "atraviesa".</p>
+                    <div class="connection-badge">Conecta con Proyecto Final</div>
+                    <p><em>Esta es la esencia de la 'integración'. En su microcurrículo, los ejes no pueden ser un anexo; deben ser el tejido que una todas las actividades de aprendizaje.</em></p>
+                </div>
+                
+                <div class="reflection-card">
+                    <h5>Proyectos</h5>
+                    <p><strong>Ejemplo Práctico:</strong> El PAC del transporte que analizamos <strong>obliga</strong> a salir del aula y resolver un problema real con la comunidad. Un PPA se quedaría en el diagnóstico dentro de la escuela.</p>
+                    <div class="connection-badge">Conecta con Proyecto Final</div>
+                    <p><em>Ustedes decidirán el alcance de los proyectos en su diseño. ¿Serán de aula, comunitarios o un híbrido? El ejemplo del transporte les mostró el poder de un PAC bien articulado.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SESIÓN DE DUDAS RÁPIDAS -->
+        <div class="content-section">
+            <h3>❓ Sesión de Dudas Rápidas</h3>
+            
+            <div class="reflection-card">
+                <h4>Focus 1: Conceptos Clave del CNB</h4>
+                <p><strong>Pregunta:</strong> "Mencione los <strong>4 Pilares</strong> del CNB."</p>
+                <p><strong>Respuesta:</strong> Aprender a Crear, Convivir y Participar, Valorar, Reflexionar.</p>
+                <div class="connection-badge">Conecta con Proyecto Final</div>
+                <p><em>Estos pilares son un excelente checklist para evaluar la integralidad de cualquier diseño curricular, incluido el que crearán.</em></p>
+            </div>
+            
+            <div class="reflection-card">
+                <h4>Focus 2: Aplicación con el Ejemplo del PAC</h4>
+                <p><strong>Pregunta:</strong> "En el PAC de las ruedas, ¿qué <strong>Eje Integrador</strong> se trabajó al analizar las rutas y costos del transporte?"</p>
+                <p><strong>Respuesta:</strong> <strong>Trabajo Liberador</strong>.</p>
+                <div class="connection-badge">Conecta con Proyecto Final</div>
+                <p><em>Fíjense cómo en un solo proyecto se articulan múltiples ejes y áreas. Esa es la <strong>integración curricular</strong> en acción, el núcleo de su proyecto final.</em></p>
+            </div>
+            
+            <div class="reflection-card">
+                <h4>Focus 3: La LOE</h4>
+                <p><strong>Pregunta:</strong> "En una frase, ¿cuál es la relación entre la <strong>LOE</strong> y el <strong>CNB</strong>?"</p>
+                <p><strong>Respuesta:</strong> La LOE es el <strong>paraguas legal</strong> que <strong>sustenta y obliga</strong> a la aplicación del CNB.</p>
+                <div class="connection-badge">Conecta con Proyecto Final</div>
+                <p><em>Todo diseño curricular serio se sustenta en un marco legal. Su proyecto deberá demostrar esta coherencia.</em></p>
+            </div>
+        </div>
+
+        <!-- EXAMEN 1 -->
+        <div class="exam-section">
+            <h3>📝 Examen 1 (120 pts)</h3>
+            
+            <div class="activity-timer" id="exam-timer">40:00</div>
+            
+            <div class="text-center">
+                <button class="btn btn-exam" onclick="startTimer('exam-timer', 2400)">Iniciar Temporizador del Examen</button>
+            </div>
+            
+            <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h4>Información del Examen:</h4>
+                <ul>
+                    <li><strong>Duración:</strong> 40 minutos</li>
+                    <li><strong>Puntuación:</strong> 120 puntos</li>
+                    <li><strong>Formato:</strong> Preguntas de opción múltiple, completación, pareo y desarrollo breve</li>
+                    <li><strong>Temas:</strong> LOE, CBN, CNB - Fundamentos, estructura, roles y comparaciones</li>
+                </ul>
+                
+                <div class="connection-badge">Recordatorio Final</div>
+                <p style="margin-top: 15px; font-style: italic; text-align: center;">
+                    "Este examen no es un fin, es un checkpoint. Evalúa su comprensión de los fundamentos. El verdadero reto, donde demostrarán su maestría al aplicar, criticar y crear a partir de estos fundamentos, será en la construcción de su microcurrículo. ¡Mucho éxito!"
+                </p>
+            </div>
+            
+            <div class="text-center">
+                <button class="btn" onclick="window.open('https://ujmv.orbund.com/einstein-freshair/touch/teacher_frameset.jsp', '_blank')">
+                    📝 Acceder al Examen en Orbund
+                </button>
+            </div>
+        </div>
+
+        <!-- INFORMACIÓN ADICIONAL -->
+        <div class="text-center" style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
+            <p><strong>👨‍🏫 Facilitador:</strong> Prof. Miguel Subero</p>
+            <p><strong>📅 Próximos pasos:</strong> Revisión del Examen 1 y preparación para el Proyecto Final de Microcurrículo</p>
+            <p><strong>📞 Consultas:</strong> Plataforma UVM / Correo institucional</p>
+        </div>
+    </div>
+
+    <script>
+        // Función para los temporizadores
+        function startTimer(elementId, seconds) {
+            const timerElement = document.getElementById(elementId);
+            let timeLeft = seconds;
+            
+            const timer = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    timerElement.textContent = "¡Tiempo completado!";
+                    timerElement.style.color = "#ff6b6b";
+                    timerElement.style.background = "#fff3e0";
+                }
+                
+                timeLeft--;
+            }, 1000);
+        }
+        
+        // Mostrar fecha actual
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = today.toLocaleDateString('es-ES', options);
+            
+            const dateElement = document.createElement('div');
+            dateElement.style.textAlign = 'center';
+            dateElement.style.marginTop = '15px';
+            dateElement.style.fontStyle = 'italic';
+            dateElement.style.color = '#666';
+            dateElement.innerHTML = `<strong>Clase activa - ${dateString}</strong>`;
+            
+            document.querySelector('.header').appendChild(dateElement);
+        });
+    </script>
+</body>
+</html>
