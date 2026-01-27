@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase: Del CBN 1997 al CNB - Preparación para el Hilo 2</title>
+    <style>
+        :root {
+            --primary: #2575fc;
+            --secondary: #6a11cb;
+            --accent1: #ff9800;
+            --accent2: #4caf50;
+            --light: #f8f9fa;
+            --dark: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #e0e0e0;
+        }
+        
+        .class-badge {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        
+        .objective-box {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .agenda-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .agenda-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .agenda-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .agenda-number {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 15px;
+            font-size: 1.2rem;
+        }
+        
+        .content-section {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .timeline-container {
+            position: relative;
+            margin: 40px 0;
+        }
+        
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 30px;
+            left: 50px;
+            right: 50px;
+            height: 3px;
+            background: var(--primary);
+            z-index: 1;
+        }
+        
+        .timeline-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+        
+        .timeline-circle {
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            box-shadow: 0 3px 10px rgba(37, 117, 252, 0.2);
+        }
+        
+        .timeline-text {
+            font-weight: bold;
+            color: #333;
+            font-size: 0.9rem;
+        }
+        
+        .timeline-year {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .comparison-section {
+            background: #fff3e0;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid var(--accent1);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .card-cbn {
+            border-top: 5px solid var(--primary);
+        }
+        
+        .card-cnb {
+            border-top: 5px solid var(--secondary);
+        }
+        
+        .workshop-section {
+            background: #e8f5e9;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid var(--accent2);
+        }
+        
+        .activity-timer {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 117, 252, 0.3);
+        }
+        
+        .btn-activity {
+            background: linear-gradient(135deg, var(--accent2) 0%, #2e7d32 100%);
+        }
+        
+        .btn-resource {
+            background: linear-gradient(135deg, var(--accent1) 0%, #ef6c00 100%);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .hilo-prep-section {
+            background: #f3e5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .tip-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .tip-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .agenda-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            
+            .timeline::before {
+                display: none;
+            }
+            
+            .timeline-item {
+                flex-direction: row;
+                width: 100%;
+                text-align: left;
+                gap: 15px;
+            }
+            
+            .timeline-circle {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                margin-bottom: 0;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="class-badge">CLASE PREPARATORIA PARA EL HILO 2</div>
+            <h1>Del Currículo Básico Nacional al Currículo Nacional Bolivariano</h1>
+            <h2>Preparación para el Análisis Crítico Comparativo</h2>
+        </div>
+
+        <!-- OBJETIVO -->
+        <div class="objective-box">
+            <h3>🎯 Objetivo de esta Clase</h3>
+            <p>Comprender la evolución del currículo venezolano desde el CBN (1997) hasta el CNB (2007) para desarrollar un análisis crítico fundamentado que será aplicado en el Hilo de Discusión 2.</p>
+        </div>
+
+        <!-- AGENDA -->
+        <div class="content-section">
+            <h3>📋 Agenda de la Clase</h3>
+            <div class="agenda-grid">
+                <div class="agenda-item">
+                    <div class="agenda-number">1</div>
+                    <h4>Contexto Histórico</h4>
+                    <p>Evolución curricular en Venezuela</p>
+                    <div class="activity-timer">15 min</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">2</div>
+                    <h4>Análisis CBN 1997</h4>
+                    <p>Fundamentos y ejes transversales</p>
+                    <div class="activity-timer">20 min</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">3</div>
+                    <h4>Transición al CNB</h4>
+                    <p>Cambios ideológicos y pedagógicos</p>
+                    <div class="activity-timer">20 min</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">4</div>
+                    <h4>Taller Práctico</h4>
+                    <p>Análisis comparativo guiado</p>
+                    <div class="activity-timer">25 min</div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">5</div>
+                    <h4>Preparación Hilo 2</h4>
+                    <p>Estrategias para el foro</p>
+                    <div class="activity-timer">10 min</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LÍNEA DE TIEMPO -->
+        <div class="timeline-container">
+            <h3 class="text-center">📅 Evolución del Currículo Venezolano</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-circle">CBN</div>
+                    <div class="timeline-text">Currículo Básico Nacional</div>
+                    <div class="timeline-year">1997</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-circle">→</div>
+                    <div class="timeline-text">Reforma Educativa</div>
+                    <div class="timeline-year">1999-2006</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-circle">CNB</div>
+                    <div class="timeline-text">Currículo Nacional Bolivariano</div>
+                    <div class="timeline-year">2007</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ANÁLISIS CBN -->
+        <div class="content-section">
+            <h3>📚 Análisis del CBN 1997: Fundamentos y Aportes</h3>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <h4>🏛️ Contexto Histórico</h4>
+                    <ul>
+                        <li>Reforma educativa de los años 90</li>
+                        <li>Influencia de tendencias internacionales</li>
+                        <li>Transición democrática en Venezuela</li>
+                        <li>Enfoque en descentralización</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card">
+                    <h4>🎯 Fundamentos Filosóficos</h4>
+                    <ul>
+                        <li>Enfoque humanista y democrático</li>
+                        <li>Formación integral del estudiante</li>
+                        <li>Participación comunitaria</li>
+                        <li>Flexibilidad curricular</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card">
+                    <h4>📊 Ejes Transversales</h4>
+                    <ul>
+                        <li>Educación ambiental</li>
+                        <li>Educación para la salud</li>
+                        <li>Educación para la paz y DDHH</li>
+                        <li>Educación tecnológica</li>
+                        <li>Interculturalidad</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 20px;">
+                <button class="btn" onclick="showActivity('cbn-analysis')">
+                    🎯 Actividad: Identificar Ejes Transversales
+                </button>
+            </div>
+            
+            <div id="cbn-analysis" style="display: none; margin-top: 20px; padding: 15px; background: white; border-radius: 8px;">
+                <h4>Ejercicio Práctico:</h4>
+                <p>Identifica cómo se manifestarían los ejes transversales del CBN en estas situaciones:</p>
+                <ul>
+                    <li>Un proyecto sobre contaminación del río local</li>
+                    <li>Una clase sobre alimentación saludable</li>
+                    <li>Un debate sobre derechos de los niños</li>
+                </ul>
+                <div class="activity-timer" id="cbn-timer">05:00</div>
+                <div class="text-center">
+                    <button class="btn btn-activity" onclick="startTimer('cbn-timer', 300)">Iniciar Temporizador</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRANSICIÓN AL CNB -->
+        <div class="comparison-section">
+            <h3>🔄 Transición al CNB 2007: Cambios y Continuidades</h3>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card card-cbn">
+                    <h4>📘 CBN 1997</h4>
+                    <ul>
+                        <li><strong>Enfoque:</strong> Humanista-democrático</li>
+                        <li><strong>Ejes:</strong> Transversales</li>
+                        <li><strong>Evaluación:</strong> Continua y formativa</li>
+                        <li><strong>Rol docente:</strong> Facilitador</li>
+                        <li><strong>Proyectos:</strong> Pedagógicos de aula</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card card-cnb">
+                    <h4>📗 CNB 2007</h4>
+                    <ul>
+                        <li><strong>Enfoque:</strong> Socialista bolivariano</li>
+                        <li><strong>Ejes:</strong> Integradores</li>
+                        <li><strong>Evaluación:</strong> Integral y cualitativa</li>
+                        <li><strong>Rol docente:</strong> Transformador social</li>
+                        <li><strong>Proyectos:</strong> De aprendizaje comunitario</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                <h4>🔍 Elementos de Continuidad:</h4>
+                <ul>
+                    <li>Importancia de los proyectos pedagógicos</li>
+                    <li>Preocupación por la formación integral</li>
+                    <li>Vinculación con el contexto</li>
+                    <li>Evaluación cualitativa</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TALLER PRÁCTICO -->
+        <div class="workshop-section">
+            <h3>🛠️ Taller Práctico: Análisis Comparativo</h3>
+            
+            <div class="activity-timer" id="workshop-timer">25:00</div>
+            
+            <div class="text-center">
+                <button class="btn" onclick="startTimer('workshop-timer', 1500)">Iniciar Temporizador del Taller</button>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <h4>Instrucciones para el trabajo en equipos:</h4>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin: 15px 0;">
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h5>Grupo 1: Fundamentos Filosóficos</h5>
+                        <p><strong>Consigna:</strong> Comparen los fundamentos del CBN y CNB. ¿Qué visiones de sociedad promueven?</p>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h5>Grupo 2: Estructura Curricular</h5>
+                        <p><strong>Consigna:</strong> Analicen cómo se organizan los contenidos en cada modelo.</p>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h5>Grupo 3: Rol del Docente</h5>
+                        <p><strong>Consigna:</strong> Identifiquen cómo conceptualizan el rol docente en cada currículo.</p>
+                    </div>
+                </div>
+                
+                <div style="background: #fff3e0; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                    <h5>Preguntas para la socialización:</h5>
+                    <ul>
+                        <li>¿Qué elementos del CBN se mantienen en el CNB?</li>
+                        <li>¿Qué cambios consideran más significativos?</li>
+                        <li>¿Cómo impactan estos cambios en la práctica docente?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PREPARACIÓN HILO 2 -->
+        <div class="hilo-prep-section">
+            <h3>💡 Preparación para el Hilo de Discusión 2</h3>
+            
+            <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                <h4>Recuerden que el Hilo 2 ya está publicado y contiene:</h4>
+                <ul>
+                    <li>Asignación específica de modelos curriculares</li>
+                    <li>Preguntas guía para el análisis</li>
+                    <li>Marco teórico para el análisis crítico</li>
+                    <li>Instrucciones detalladas de participación</li>
+                    <li>Criterios de evaluación</li>
+                </ul>
+            </div>
+            
+            <h4>🎯 Estrategias para un análisis exitoso:</h4>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">📖</div>
+                    <h5>Lectura Crítica</h5>
+                    <p>Lean los documentos oficiales con mirada analítica</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🔍</div>
+                    <h5>Identificar Proyectos Políticos</h5>
+                    <p>¿Qué sociedad pretende construir cada modelo?</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">💬</div>
+                    <h5>Preparar Preguntas</h5>
+                    <p>Elaboren preguntas provocadoras para el debate</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">📊</div>
+                    <h5>Comparar y Contrastar</h5>
+                    <p>Establezcan relaciones entre los diferentes modelos</p>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 20px;">
+                <button class="btn btn-activity" onclick="window.open('https://ujmv.orbund.com/einstein-freshair/touch/teacher_frameset.jsp', '_blank')">
+                    💬 Ir al Hilo 2 en Orbund
+                </button>
+                <button class="btn btn-resource" onclick="window.open('https://docs.google.com/viewerng/viewer?url=https://ujmv.orbund.com/einstein-freshair/Videos/A08F5D46E4EF27A109B950D6E8DA4C2C/1197180Curriculo_Educacion_Primaria_2007.pdf', '_blank')">
+                    📚 Recursos de Apoyo
+                </button>
+            </div>
+        </div>
+
+        <!-- INFORMACIÓN ADICIONAL -->
+        <div class="text-center" style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
+            <p><strong>👨‍🏫 Facilitador:</strong> Prof. Miguel Subero</p>
+            <p><strong>📅 Próximos pasos:</strong> Revisar el Hilo 2 en Orbund y comenzar el análisis asignado</p>
+            <p><strong>📞 Consultas:</strong> Plataforma UVM / Correo institucional</p>
+        </div>
+    </div>
+
+    <script>
+        // Función para mostrar/ocultar actividades
+        function showActivity(activityId) {
+            const activityElement = document.getElementById(activityId);
+            if (activityElement.style.display === 'none') {
+                activityElement.style.display = 'block';
+            } else {
+                activityElement.style.display = 'none';
+            }
+        }
+        
+        // Función para los temporizadores
+        function startTimer(elementId, seconds) {
+            const timerElement = document.getElementById(elementId);
+            let timeLeft = seconds;
+            
+            const timer = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    timerElement.textContent = "¡Tiempo completado!";
+                    timerElement.style.color = "#ff6b6b";
+                    timerElement.style.background = "#fff3e0";
+                }
+                
+                timeLeft--;
+            }, 1000);
+        }
+        
+        // Mostrar fecha actual
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = today.toLocaleDateString('es-ES', options);
+            
+            const dateElement = document.createElement('div');
+            dateElement.style.textAlign = 'center';
+            dateElement.style.marginTop = '15px';
+            dateElement.style.fontStyle = 'italic';
+            dateElement.style.color = '#666';
+            dateElement.innerHTML = `<strong>Clase activa - ${dateString}</strong>`;
+            
+            document.querySelector('.header').appendChild(dateElement);
+            
+            // Asignación aleatoria de estudiantes a grupos (para el profesor)
+            const students = ['Ana Rodríguez', 'Carlos Pérez', 'María González', 'José Martínez', 'Laura Díaz', 'Pedro Sánchez', 'Luisa Fernández', 'Miguel Ángel'];
+            const shuffledStudents = [...students].sort(() => Math.random() - 0.5);
+            
+            console.log('📋 Asignación sugerida para grupos:');
+            console.log('Grupo 1 (Fundamentos):', shuffledStudents[0], shuffledStudents[1]);
+            console.log('Grupo 2 (Estructura):', shuffledStudents[2], shuffledStudents[3]);
+            console.log('Grupo 3 (Rol docente):', shuffledStudents[4], shuffledStudents[5]);
+            if (shuffledStudents.length > 6) {
+                console.log('Estudiantes adicionales:', shuffledStudents.slice(6));
+            }
+        });
+    </script>
+</body>
+</html>
