@@ -112,6 +112,16 @@
             font-weight: bold;
         }
         
+        /* Estilo para la semana actual */
+        .tarjeta.semana-actual {
+            border-top: 5px solid #00c853;
+            background-color: #f1f8e9;
+        }
+        .tarjeta.semana-actual .badge-fecha {
+            background: #00c853;
+            color: white;
+        }
+        
         .badge-eval {
             display: inline-block;
             margin-top: 10px;
@@ -147,13 +157,16 @@
         
         /* Estilos para Botones Complementarios (Sidebar) */
         .btn-recurso {
-            background: #6a11cb; /* Morado para diferenciar */
+            background: #6a11cb;
             text-align: left;
             padding: 12px;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
             font-size: 0.95rem;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
         }
         .btn-recurso:hover { background: #4a0ca3; transform: translateX(5px); }
         .icon-btn { margin-right: 10px; font-size: 1.2rem; }
@@ -182,7 +195,7 @@
             <h1>Currículo de Educación Básica</h1>
             <h2>Universidad José María Vargas | Facultad de Educación</h2>
             <p class="subtitulo"><strong>Profesor:</strong> Lcdo. Miguel Ángel Subero Arguinzones</p>
-            <p class="subtitulo" style="font-size: 0.9rem;">Modalidad: Mixta (8 Semanas) | Repositorio de Materiales</p>
+            <p class="subtitulo" style="font-size: 0.9rem;">Período: Enero - Marzo 2026 | Modalidad: Mixta</p>
         </header>
         
         <div class="contenido-principal">
@@ -211,14 +224,14 @@
                         </div>
                     </div>
                     
-                    <a href="clase-semana-8.html" class="btn btn-proyecto">Ver Detalles y Entrega del Proyecto</a>
+                    <a href="clase-semana-8.html" class="btn btn-proyecto">Ver Detalles y Entrega del Proyecto (02/03)</a>
                 </div>
 
                 <h3 style="color: white; margin-bottom: 20px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Planificación Semanal</h3>
                 <div class="tarjetas-grid">
                     
                     <div class="tarjeta">
-                        <div class="badge-fecha">19/10</div>
+                        <div class="badge-fecha">12/01</div>
                         <h3>Semana 1: Introducción</h3>
                         <p>Concepto, componentes y modelos clásicos (Tyler, Taba, Stenhouse).</p>
                         <div class="badge-eval eval-hilo">Hilo 1 (20 pts)</div>
@@ -226,15 +239,15 @@
                     </div>
 
                     <div class="tarjeta">
-                        <div class="badge-fecha">26/10</div>
+                        <div class="badge-fecha">19/01</div>
                         <h3>Semana 2: Historia</h3>
                         <p>Evolución histórica y análisis político de las reformas.</p>
                         <div class="badge-eval eval-tarea">Tarea 1 (40 pts)</div>
                         <a href="clase-semana-2.html" class="btn">Ver Clase 2</a>
                     </div>
 
-                    <div class="tarjeta">
-                        <div class="badge-fecha">02/11</div>
+                    <div class="tarjeta semana-actual">
+                        <div class="badge-fecha">26/01</div>
                         <h3>Semana 3: CBN 1997</h3>
                         <p>Fundamentos y estructura del Currículo Básico Nacional.</p>
                         <div class="badge-eval eval-hilo">Hilo 2 (20 pts)</div>
@@ -242,7 +255,7 @@
                     </div>
 
                     <div class="tarjeta">
-                        <div class="badge-fecha">09/11</div>
+                        <div class="badge-fecha">02/02</div>
                         <h3>Semana 4: CNB 2007</h3>
                         <p>Ideología y pilares del Currículo Nacional Bolivariano.</p>
                         <div class="badge-eval eval-examen">Examen 1 (120 pts)</div>
@@ -250,7 +263,7 @@
                     </div>
 
                     <div class="tarjeta">
-                        <div class="badge-fecha">16/11</div>
+                        <div class="badge-fecha">09/02</div>
                         <h3>Semana 5: Competencias</h3>
                         <p>Taller de redacción de competencias e indicadores.</p>
                         <div class="badge-eval eval-tarea">Tarea 2 (40 pts)</div>
@@ -258,7 +271,7 @@
                     </div>
 
                     <div class="tarjeta">
-                        <div class="badge-fecha">23/11</div>
+                        <div class="badge-fecha">16/02</div>
                         <h3>Semana 6: Evaluación</h3>
                         <p>Diseño de instrumentos y elaboración de rúbricas.</p>
                         <div class="badge-eval eval-hilo">Hilo 3 (20 pts)</div>
@@ -266,7 +279,7 @@
                     </div>
 
                     <div class="tarjeta">
-                        <div class="badge-fecha">30/11</div>
+                        <div class="badge-fecha">23/02</div>
                         <h3>Semana 7: PEIC</h3>
                         <p>Gestión curricular contextualizada y comunidad.</p>
                         <div class="badge-eval eval-tarea">Tarea 3 (40 pts)</div>
@@ -311,15 +324,15 @@
                     </ul>
                 </div>
 
-                <h3>📅 Cronograma Rápido</h3>
+                <h3>📅 Cronograma 2026</h3>
                 <ul style="list-style: none; font-size: 0.9rem; color: #555;">
-                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S1: Hilo 1 (19/10)</li>
-                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S2: Tarea 1 (26/10)</li>
-                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S3: Hilo 2 (02/11)</li>
-                    <li style="padding:5px 0; border-bottom:1px solid #eee;"><strong>S4: Examen 1 (09/11)</strong></li>
-                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S5: Tarea 2 (16/11)</li>
-                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S6: Hilo 3 (23/11)</li>
-                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S7: Tarea 3 (30/11)</li>
+                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S1: Hilo 1 (12/01)</li>
+                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S2: Tarea 1 (19/01)</li>
+                    <li style="padding:5px 0; border-bottom:1px solid #eee;"><strong>S3: Hilo 2 (26/01)</strong> ← HOY</li>
+                    <li style="padding:5px 0; border-bottom:1px solid #eee;"><strong>S4: Examen 1 (02/02)</strong></li>
+                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S5: Tarea 2 (09/02)</li>
+                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S6: Hilo 3 (16/02)</li>
+                    <li style="padding:5px 0; border-bottom:1px solid #eee;">S7: Tarea 3 (23/02)</li>
                 </ul>
             </div>
         </div>
