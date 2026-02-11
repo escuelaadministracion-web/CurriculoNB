@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Final - Microcurrículo Integrado</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #9b59b6;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --radius: 10px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%);
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="white" opacity="0.05"/></svg>');
+            background-size: cover;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        h1 i {
+            color: var(--warning);
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 50%;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            max-width: 800px;
+        }
+        
+        .project-value {
+            display: inline-block;
+            background-color: var(--success);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--light);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        h2 i {
+            color: var(--accent);
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin: 25px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .rubric-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .rubric-card {
+            background-color: #f8f9fa;
+            border-radius: var(--radius);
+            padding: 25px;
+            border-top: 5px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .rubric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .rubric-points {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .sprint-flow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .sprint-card {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            width: 180px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-top: 5px solid var(--secondary);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .sprint-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .sprint-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .sprint-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .sprint-content {
+            display: none;
+            padding: 30px;
+            background-color: #f8f9fa;
+            border-radius: var(--radius);
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .sprint-content.active {
+            display: block;
+        }
+        
+        .visual-banner {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon-card {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            width: 150px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--light);
+        }
+        
+        .icon-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .template {
+            background-color: #f0f7ff;
+            border: 2px dashed var(--secondary);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin: 25px 0;
+        }
+        
+        .template-field {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+        
+        .template-field:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.1);
+        }
+        
+        .template-field label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        .indicator-tags {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tag-ser { background-color: #ffeaa7; color: #000; }
+        .tag-saber { background-color: #a29bfe; color: white; }
+        .tag-hacer { background-color: #55efc4; color: #000; }
+        
+        .roadmap {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px 0;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .session-card {
+            min-width: 200px;
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--success);
+        }
+        
+        .session-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--success);
+            margin-bottom: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid var(--light);
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+            
+            .sprint-flow {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .sprint-card {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .roadmap {
+                flex-direction: column;
+            }
+            
+            .session-card {
+                min-width: 100%;
+            }
+        }
+        
+        /* Estilos específicos para componentes */
+        .highlight-box {
+            background-color: #fff9e6;
+            border-left: 5px solid var(--warning);
+            padding: 20px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 20px 0;
+        }
+        
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        
+        .matrix-table th {
+            background-color: var(--primary);
+            color: white;
+            padding: 18px;
+            text-align: left;
+        }
+        
+        .matrix-table td {
+            padding: 18px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .matrix-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .competence-example {
+            background-color: #f9f9f9;
+            border-radius: var(--radius);
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .reflection-box {
+            background-color: #e8f6ef;
+            border-radius: var(--radius);
+            padding: 30px;
+            margin: 30px 0;
+            border: 2px solid var(--success);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1><i class="fas fa-graduation-cap"></i> Proyecto Final - Microcurrículo Integrado</h1>
+            <p class="subtitle">Diseñar un microcurrículo integrado (para Inicial o Básica) que incluya: competencias (Ser–Saber–Hacer), secuencia de aprendizajes, instrumentos de evaluación y componente PEIC (escuela–comunidad).</p>
+            <div class="project-value">Proyecto: 250 pts + Presentación/Defensa: 200 pts = Total: 450 pts</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2><i class="fas fa-tachometer-alt"></i> Dimensiones de la Rúbrica</h2>
+        <div class="rubric-container">
+            <div class="rubric-card">
+                <h3>Coherencia curricular</h3>
+                <p>Alineación entre objetivos, contenidos, metodología y evaluación.</p>
+                <div class="rubric-points">80 puntos</div>
+            </div>
+            
+            <div class="rubric-card">
+                <h3>Metodología y accesibilidad</h3>
+                <p>Estrategias activas y ajustes para la diversidad de estudiantes.</p>
+                <div class="rubric-points">60 puntos</div>
+            </div>
+            
+            <div class="rubric-card">
+                <h3>Instrumento de evaluación</h3>
+                <p>Herramientas válidas y confiables para medir aprendizajes.</p>
+                <div class="rubric-points">40 puntos</div>
+            </div>
+            
+            <div class="rubric-card">
+                <h3>Componente PEIC</h3>
+                <p>Conexión efectiva entre escuela y comunidad.</p>
+                <div class="rubric-points">40 puntos</div>
+            </div>
+            
+            <div class="rubric-card">
+                <h3>Reflexión crítica</h3>
+                <p>Análisis profundo del diseño y sus implicaciones.</p>
+                <div class="rubric-points">30 puntos</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2><i class="fas fa-road"></i> Vista General del Flujo (Sprints)</h2>
+        
+        <div class="sprint-flow">
+            <div class="sprint-card" onclick="showSprint(1)">
+                <div class="sprint-number">1</div>
+                <div class="sprint-title">Enfoque y Contexto</div>
+                <p>Qué, para quién y por qué</p>
+                <small>Unidad I</small>
+            </div>
+            
+            <div class="sprint-card" onclick="showSprint(2)">
+                <div class="sprint-number">2</div>
+                <div class="sprint-title">Marco Curricular</div>
+                <p>CBN/CNB</p>
+                <small>Unidades II-III</small>
+            </div>
+            
+            <div class="sprint-card" onclick="showSprint(3)">
+                <div class="sprint-number">3</div>
+                <div class="sprint-title">Competencias e Indicadores</div>
+                <p>Ser-Saber-Hacer</p>
+                <small>Unidad IV</small>
+            </div>
+            
+            <div class="sprint-card" onclick="showSprint(4)">
+                <div class="sprint-number">4</div>
+                <div class="sprint-title">Metodología y Secuencia</div>
+                <p>Estrategias activas</p>
+                <small>Unidad IV</small>
+            </div>
+            
+            <div class="sprint-card" onclick="showSprint(5)">
+                <div class="sprint-number">5</div>
+                <div class="sprint-title">Evaluación</div>
+                <p>Instrumentos coherentes</p>
+                <small>Unidad IV</small>
+            </div>
+            
+            <div class="sprint-card" onclick="showSprint(6)">
+                <div class="sprint-number">6</div>
+                <div class="sprint-title">PEIC</div>
+                <p>Escuela-Comunidad</p>
+                <small>Unidad V</small>
+            </div>
+            
+            <div class="sprint-card" onclick="showSprint(7)">
+                <div class="sprint-number">7</div>
+                <div class="sprint-title">Cierre</div>
+                <p>Evidencias + Reflexión</p>
+                <small>Unidad VI</small>
+            </div>
+        </div>
+        
+        <!-- Sprint 1 -->
+        <div id="sprint1" class="sprint-content">
+            <h3><i class="fas fa-bullseye"></i> Sprint 1: Define el enfoque y el contexto</h3>
+            <p><strong>Producto:</strong> Una ficha de 1 página con:</p>
+            
+            <div class="template">
+                <div class="template-field">
+                    <label>Nivel y grado:</label>
+                    <div>[Inicial o Básica] - [Grado específico]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Área de aprendizaje:</label>
+                    <div>[Ej: Lengua y Literatura, Matemática, Ciencias Sociales]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Grupo meta:</label>
+                    <div>[Descripción de los estudiantes: edad, características, contexto]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Necesidad o problema identificado:</label>
+                    <div>[Ej: Comprensión lectora, resolución de problemas matemáticos, convivencia escolar]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Propósito general del microcurrículo (1-2 frases claras):</label>
+                    <div>[Redacta el objetivo central de tu diseño curricular]</div>
+                </div>
+            </div>
+            
+            <div class="visual-banner">
+                <div class="icon-card">
+                    <i class="fas fa-child"></i>
+                    <div>Estudiantes</div>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-school"></i>
+                    <div>Contexto</div>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-bullseye"></i>
+                    <div>Propósito</div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>Aporta a la rúbrica:</strong> Coherencia curricular (80 pts)</p>
+            </div>
+        </div>
+        
+        <!-- Sprint 2 -->
+        <div id="sprint2" class="sprint-content">
+            <h3><i class="fas fa-book-open"></i> Sprint 2: Sostén el marco curricular</h3>
+            <p><strong>Producto:</strong> Síntesis (¾-1 página) que conecte tu enfoque con:</p>
+            
+            <ul>
+                <li>Elementos del CBN 1997 y/o CNB 2007 pertinentes al área</li>
+                <li>Menciona ejes/pilares de forma operativa para tu diseño (sin teoría extensa)</li>
+            </ul>
+            
+            <div class="template">
+                <div class="template-field">
+                    <label>Conexión con CBN 1997:</label>
+                    <div>[Identifica 2-3 elementos clave del CBN que sustentan tu diseño]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Conexión con CNB 2007:</label>
+                    <div>[Identifica 2-3 elementos clave del CNB que sustentan tu diseño]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Ejes transversales aplicados:</label>
+                    <div>[Ej: Valores, trabajo, ambiente, tecnología]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Aporte al diseño curricular:</label>
+                    <div>[Explica cómo estos elementos fundamentan y dan coherencia a tu microcurrículo]</div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>Visual:</strong> Diagrama Venn CBN ↔ CNB con 3 bullets de aporte a tu diseño</p>
+                <p><strong>Aporta a la rúbrica:</strong> Coherencia curricular (80 pts)</p>
+            </div>
+        </div>
+        
+        <!-- Sprint 3 -->
+        <div id="sprint3" class="sprint-content">
+            <h3><i class="fas fa-list-check"></i> Sprint 3: Redacta competencias integrales e indicadores</h3>
+            <p><strong>Producto:</strong> Matriz (1-2 páginas) con mínimo 3 competencias y 9 indicadores (3 por competencia: Ser/Saber/Hacer).</p>
+            
+            <div class="indicator-tags">
+                <div class="tag tag-ser"><i class="fas fa-heart"></i> Ser (Actitudinal)</div>
+                <div class="tag tag-saber"><i class="fas fa-brain"></i> Saber (Conceptual)</div>
+                <div class="tag tag-hacer"><i class="fas fa-hands"></i> Hacer (Procedimental)</div>
+            </div>
+            
+            <div class="competence-example">
+                <p><strong>Recordatorio:</strong></p>
+                <p>Competencia = <strong>Verbo observable</strong> + Contenido + Propósito + Contexto</p>
+                <p>Indicador = <strong>Acción observable</strong> + Contenido + Condición/Criterio + Nivel de desempeño</p>
+            </div>
+            
+            <div class="template">
+                <h4>Mini-plantilla por competencia</h4>
+                
+                <div class="template-field">
+                    <label>Competencia 1:</label>
+                    <div>[verbo] [contenido] para [propósito] en [contexto]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label><span class="tag tag-ser">Ser</span> Indicador:</label>
+                    <div>[acción] + [criterio/condición] + [nivel]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label><span class="tag tag-saber">Saber</span> Indicador:</label>
+                    <div>[acción] + [criterio/condición] + [nivel]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label><span class="tag tag-hacer">Hacer</span> Indicador:</label>
+                    <div>[acción] + [criterio/condición] + [nivel]</div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>Visual:</strong> Usa sellos 🔵 Ser | 🟡 Saber | 🟢 Hacer para clasificar indicadores</p>
+                <p><strong>Aporta a las rúbricas:</strong> Coherencia (80 pts) + Evaluación (40 pts)</p>
+            </div>
+        </div>
+        
+        <!-- Sprint 4 -->
+        <div id="sprint4" class="sprint-content">
+            <h3><i class="fas fa-chalkboard-teacher"></i> Sprint 4: Diseña la metodología y la secuencia</h3>
+            <p><strong>Producto:</strong> Secuencia didáctica de 3-5 sesiones con estrategias activas y ajustes de accesibilidad.</p>
+            
+            <div class="template">
+                <h4>Estrategias sugeridas:</h4>
+                <ul>
+                    <li><strong>ABP</strong> - Aprendizaje Basado en Proyectos</li>
+                    <li><strong>Estaciones de aprendizaje</strong> - Rotación por actividades</li>
+                    <li><strong>Gamificación ligera</strong> - Puntos, insignias, niveles</li>
+                    <li><strong>Rincones</strong> - Espacios temáticos</li>
+                    <li><strong>Aprendizaje colaborativo</strong> - Trabajo en equipos</li>
+                </ul>
+                
+                <h4>Accesibilidad (requerido en rúbrica):</h4>
+                <ul>
+                    <li>Formatos de materiales legibles</li>
+                    <li>Alternativas multimodales (audio/visual)</li>
+                    <li>Instrucciones paso a paso</li>
+                    <li>Apoyos entre pares</li>
+                </ul>
+            </div>
+            
+            <div class="roadmap">
+                <div class="session-card">
+                    <div class="session-number">1️⃣</div>
+                    <h4>Sesión 1 - Exploración</h4>
+                    <p>Activar conocimientos previos y presentar el reto.</p>
+                    <p><em>Emoji: 📖</em></p>
+                </div>
+                
+                <div class="session-card">
+                    <div class="session-number">2️⃣</div>
+                    <h4>Sesión 2 - Investigación</h4>
+                    <p>Búsqueda de información y análisis.</p>
+                    <p><em>Emoji: ✍️</em></p>
+                </div>
+                
+                <div class="session-card">
+                    <div class="session-number">3️⃣</div>
+                    <h4>Sesión 3 - Aplicación</h4>
+                    <p>Desarrollo de habilidades prácticas.</p>
+                    <p><em>Emoji: 🧩</em></p>
+                </div>
+                
+                <div class="session-card">
+                    <div class="session-number">4️⃣</div>
+                    <h4>Sesión 4 - Creación</h4>
+                    <p>Elaboración de productos o soluciones.</p>
+                    <p><em>Emoji: 🎭</em></p>
+                </div>
+                
+                <div class="session-card">
+                    <div class="session-number">5️⃣</div>
+                    <h4>Sesión 5 - Socialización</h4>
+                    <p>Presentación y reflexión sobre lo aprendido.</p>
+                    <p><em>Emoji: 🗣️</em></p>
+                </div>
+            </div>
+            
+            <div class="template">
+                <h4>Mini-plantilla por sesión (máx. ½ página cada una)</h4>
+                
+                <div class="template-field">
+                    <label>Sesión X - Título:</label>
+                    <div>[Título descriptivo y atractivo]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Propósito breve:</label>
+                    <div>[¿Qué se busca lograr en esta sesión?]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Actividad clave:</label>
+                    <div>[Descripción de la actividad principal]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Producto/Evidencia:</label>
+                    <div>[¿Qué evidencia generarán los estudiantes?]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Atención a la diversidad:</label>
+                    <div>[Ajustes y apoyos para diferentes necesidades]</div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>Aporta a la rúbrica:</strong> Metodología y accesibilidad (60 pts)</p>
+            </div>
+        </div>
+        
+        <!-- Sprints 5, 6, 7 (similares) -->
+        <div id="sprint5" class="sprint-content">
+            <h3><i class="fas fa-clipboard-check"></i> Sprint 5: Evaluación - Instrumentos coherentes</h3>
+            <p><strong>Producto:</strong> Diseño de al menos 2 instrumentos de evaluación alineados con las competencias.</p>
+            
+            <div class="template">
+                <div class="template-field">
+                    <label>Instrumento 1 (Formativo):</label>
+                    <div>[Ej: Rúbrica de observación, diario de aprendizaje, portafolio]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Instrumento 2 (Sumativo):</label>
+                    <div>[Ej: Prueba práctica, proyecto evaluado, presentación oral]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Criterios de evaluación:</label>
+                    <div>[Lista de criterios claros y medibles]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Escala de valoración:</label>
+                    <div>[Ej: Excelente, Bueno, Satisfactorio, En proceso]</div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>Aporta a la rúbrica:</strong> Instrumento de evaluación (40 pts)</p>
+            </div>
+        </div>
+        
+        <div id="sprint6" class="sprint-content">
+            <h3><i class="fas fa-handshake"></i> Sprint 6: PEIC - Puente escuela-comunidad</h3>
+            <p><strong>Producto:</strong> Componente que conecte el microcurrículo con la comunidad.</p>
+            
+            <div class="template">
+                <div class="template-field">
+                    <label>Problema comunitario identificado:</label>
+                    <div>[Problema real de la comunidad relacionado con el área]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Actividad de vinculación:</label>
+                    <div>[¿Cómo se conectará el aprendizaje con la comunidad?]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Participantes externos:</label>
+                    <div>[Familias, organizaciones, expertos locales]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Producto comunitario:</label>
+                    <div>[¿Qué se generará para o con la comunidad?]</div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>Aporta a la rúbrica:</strong> Componente PEIC (40 pts)</p>
+            </div>
+        </div>
+        
+        <div id="sprint7" class="sprint-content">
+            <h3><i class="fas fa-flag-checkered"></i> Sprint 7: Cierre - Evidencias + Reflexión + Defensa</h3>
+            <p><strong>Producto:</strong> Documento final integrado y preparación para la defensa.</p>
+            
+            <div class="reflection-box">
+                <h4>Reflexión crítica (30 pts en la rúbrica)</h4>
+                <p>Analiza:</p>
+                <ul>
+                    <li>Fortalezas y limitaciones de tu diseño</li>
+                    <li>Posibles ajustes para futuras implementaciones</li>
+                    <li>Aprendizajes personales del proceso de diseño</li>
+                    <li>Impacto potencial en los estudiantes y la comunidad</li>
+                </ul>
+            </div>
+            
+            <div class="template">
+                <div class="template-field">
+                    <label>Estructura del documento final:</label>
+                    <div>1. Portada APA | 2. Resumen | 3. Introducción | 4. Desarrollo por sprints | 5. Conclusiones | 6. Referencias</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Preparación para la defensa:</label>
+                    <div>[Guión de 10-15 minutos para presentar lo más relevante]</div>
+                </div>
+                
+                <div class="template-field">
+                    <label>Evidencias clave a mostrar:</label>
+                    <div>[Selecciona 3-5 elementos más representativos de tu diseño]</div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>Formato final:</strong> Documento académico con APA 7.ª edición</p>
+                <p><strong>Presentación/Defensa:</strong> 200 puntos adicionales</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2><i class="fas fa-file-export"></i> Formato de Entrega</h2>
+        
+        <div class="template">
+            <h3>Requisitos formales:</h3>
+            <ul>
+                <li><strong>Extensión:</strong> 15-20 páginas (excluyendo portada y referencias)</li>
+                <li><strong>Formato:</strong> Documento Word o PDF</li>
+                <li><strong>Normas:</strong> APA 7.ª edición (citas, referencias, formato)</li>
+                <li><strong>Estructura:</strong> Seguir la secuencia de los 7 sprints</li>
+                <li><strong>Originalidad:</strong> Trabajo individual, citas adecuadas</li>
+            </ul>
+            
+            <h3>Fechas clave (según cronograma del curso):</h3>
+            <div class="template-field">
+                <label>Entrega del documento final:</label>
+                <div>[Fecha específica según planificación]</div>
+            </div>
+            
+            <div class="template-field">
+                <label>Presentación/Defensa:</label>
+                <div>[Fecha de defensa oral o entrega de video]</div>
+            </div>
+            
+            <button class="btn" onclick="downloadTemplate()">
+                <i class="fas fa-download"></i> Descargar Plantilla Completa
+            </button>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p><strong>Proyecto Final - Microcurrículo Integrado</strong></p>
+        <p>Organización y Administración Escolar · Total: 450 puntos</p>
+        <p>© Material de apoyo para el desarrollo del proyecto final</p>
+    </div>
+    
+    <script>
+        // Mostrar el primer sprint por defecto
+        document.addEventListener('DOMContentLoaded', function() {
+            showSprint(1);
+            
+            // Agregar interactividad a los campos de plantilla
+            document.querySelectorAll('.template-field div').forEach(field => {
+                field.addEventListener('click', function() {
+                    const text = this.textContent;
+                    const input = document.createElement('textarea');
+                    input.value = text.replace(/\[|\]/g, '');
+                    input.style.width = '100%';
+                    input.style.minHeight = '80px';
+                    input.style.padding = '10px';
+                    input.style.border = '2px solid var(--secondary)';
+                    input.style.borderRadius = '8px';
+                    input.style.fontFamily = 'inherit';
+                    input.style.fontSize = 'inherit';
+                    
+                    this.textContent = '';
+                    this.appendChild(input);
+                    input.focus();
+                    
+                    input.addEventListener('blur', function() {
+                        const newText = this.value || '[Texto a completar]';
+                        this.parentElement.textContent = newText;
+                    });
+                });
+            });
+        });
+        
+        // Función para mostrar el contenido del sprint seleccionado
+        function showSprint(sprintNumber) {
+            // Ocultar todos los sprints
+            document.querySelectorAll('.sprint-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Mostrar el sprint seleccionado
+            const sprintContent = document.getElementById(`sprint${sprintNumber}`);
+            if (sprintContent) {
+                sprintContent.classList.add('active');
+                
+                // Desplazar suavemente a la sección
+                sprintContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            
+            // Resaltar la tarjeta del sprint seleccionado
+            document.querySelectorAll('.sprint-card').forEach(card => {
+                card.style.borderTop = '5px solid var(--secondary)';
+                card.style.transform = 'translateY(0)';
+            });
+            
+            const selectedCard = document.querySelectorAll('.sprint-card')[sprintNumber - 1];
+            if (selectedCard) {
+                selectedCard.style.borderTop = '5px solid var(--accent)';
+                selectedCard.style.transform = 'translateY(-10px)';
+            }
+        }
+        
+        // Función para descargar plantilla (simulada)
+        function downloadTemplate() {
+            const content = `
+            PLANTILLA PROYECTO FINAL - MICROCURRÍCULO INTEGRADO
+            
+            INSTRUCCIONES:
+            1. Completa cada sección según lo trabajado en los sprints
+            2. Mantén el formato APA 7.ª edición
+            3. Guarda como: Apellido_Nombre_ProyectoFinal.docx
+            
+            ÍNDICE:
+            1. Portada (formato APA)
+            2. Resumen (250 palabras)
+            3. Introducción (contexto y propósito)
+            4. Marco curricular (CBN/CNB)
+            5. Competencias e indicadores
+            6. Secuencia didáctica
+            7. Instrumentos de evaluación
+            8. Componente PEIC
+            9. Reflexión crítica
+            10. Referencias (formato APA)
+            
+            FECHA DE ENTREGA: [Consulte el cronograma del curso]
+            `;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Plantilla_Proyecto_Final.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            alert('Plantilla descargada. Recuerda adaptarla a tu proyecto específico.');
+        }
+        
+        // Animaciones adicionales
+        document.querySelectorAll('.section').forEach((section, index) => {
+            section.style.animationDelay = `${index * 0.1}s`;
+            section.style.animation = 'fadeIn 0.5s ease-out';
+        });
+    </script>
+</body>
+</html>
