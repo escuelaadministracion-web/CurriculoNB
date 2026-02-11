@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 5 - Taller de Competencias e Indicadores</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="white" opacity="0.05"/></svg>');
+            background-size: cover;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        h1 i {
+            color: var(--warning);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .info-card {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-card i {
+            font-size: 1.5rem;
+            color: var(--warning);
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2 i {
+            color: var(--secondary);
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin: 20px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .agenda {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .time-slot {
+            background-color: var(--light);
+            border-radius: var(--radius);
+            padding: 20px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .time {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .activity {
+            color: var(--dark);
+        }
+        
+        .highlight {
+            background-color: #fff9e6;
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 15px 0;
+        }
+        
+        .template {
+            background-color: #f0f7ff;
+            border: 1px dashed var(--secondary);
+            border-radius: var(--radius);
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .example-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .example {
+            background-color: #e8f4fc;
+            border-radius: var(--radius);
+            padding: 20px;
+            border-top: 4px solid var(--success);
+        }
+        
+        .example-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checklist {
+            list-style-type: none;
+            margin: 15px 0;
+        }
+        
+        .checklist li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .connection-box {
+            background-color: #e8f6ef;
+            border-radius: var(--radius);
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid var(--success);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--light);
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* NUEVOS ESTILOS PARA MODELOS OBSERVABLES */
+        .models-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .model-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .model-card.ser {
+            background: linear-gradient(to bottom right, #ffeaa7, #fab1a0);
+            border-top: 4px solid #e17055;
+        }
+        
+        .model-card.saber {
+            background: linear-gradient(to bottom right, #a29bfe, #74b9ff);
+            border-top: 4px solid #6c5ce7;
+        }
+        
+        .model-card.hacer {
+            background: linear-gradient(to bottom right, #55efc4, #81ecec);
+            border-top: 4px solid #00b894;
+        }
+        
+        .model-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .verb-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .verb-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .verb-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .verb-item.ser { color: #d63031; }
+        .verb-item.saber { color: #0984e3; }
+        .verb-item.hacer { color: #00b894; }
+        
+        .model-description {
+            font-style: italic;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 6px;
+        }
+        
+        .non-observable {
+            background-color: #ffeef0;
+            border-left: 4px solid #ff7675;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        
+        .non-observable h4 {
+            color: #d63031;
+            margin-bottom: 10px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        
+        .comparison-table th {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: #e8f4fc;
+        }
+        
+        .good-example {
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .bad-example {
+            color: var(--accent);
+            text-decoration: line-through;
+        }
+        
+        .dimension-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .ser-tag { background-color: #ffeaa7; color: #000; }
+        .saber-tag { background-color: #a29bfe; color: white; }
+        .hacer-tag { background-color: #55efc4; color: #000; }
+        
+        .template-field {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        .template-field label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .agenda {
+                grid-template-columns: 1fr;
+            }
+            
+            .models-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .verb-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+        
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        /* Estilo para los ejemplos de competencias */
+        .competence-example {
+            background-color: #f9f9f9;
+            border-radius: var(--radius);
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1><i class="fas fa-chalkboard-teacher"></i> Clase 5 - Taller de Redacción de Competencias e Indicadores</h1>
+            <p class="subtitle">Áreas de aprendizaje y competencias del ser, saber y hacer</p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Duración:</strong> 120 minutos
+                    </div>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-laptop"></i>
+                    <div>
+                        <strong>Modalidad:</strong> Online (Zoom/Google Meet)
+                    </div>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-tasks"></i>
+                    <div>
+                        <strong>Vinculación:</strong> Tarea 2 (40 pts)
+                    </div>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <strong>Producto:</strong> Competencia + 3 indicadores por equipo
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2><i class="fas fa-cogs"></i> Configuración Previa (5-10 min antes)</h2>
+        <div class="checklist">
+            <li>Enlaces listos: sala de videoconferencia, documentos colaborativos por equipo, pizarra digital</li>
+            <li>Permisos configurados: "Cualquiera con el enlace: Editor" para los Docs de equipos</li>
+            <li>Carpeta compartida: "Clase 5 – Taller competencias" con subcarpetas por equipo (A, B, C...)</li>
+            <li>Breakout rooms preparadas con asignación automática</li>
+            <li>Grabación activada (si la normativa lo permite) y aviso al grupo</li>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2><i class="fas fa-bullseye"></i> Propósito de la Sesión</h2>
+        <p>Que el estudiante <strong>redacte competencias e indicadores observables y medibles</strong>, articulando <strong>Ser–Saber–Hacer</strong> en un área y nivel educativo definidos, con criterios de alineación y claridad.</p>
+        
+        <div class="highlight">
+            <h3><i class="fas fa-lightbulb"></i> Conceptos Clave</h3>
+            <ul>
+                <li><strong>Competencia:</strong> verbo observable + contenido + propósito/para qué + contexto</li>
+                <li><strong>Indicador:</strong> acción observable + contenido + <strong>condición/criterio</strong> + <strong>nivel de desempeño</strong> (ej: "en 15 min", "al menos 3 de 4", "sin apoyo")</li>
+                <li><strong>Dimensiones:</strong> <span class="dimension-tag ser-tag">Ser</span> (actitudes/valores) · <span class="dimension-tag saber-tag">Saber</span> (conocimientos) · <span class="dimension-tag hacer-tag">Hacer</span> (procedimientos)</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- NUEVA SECCIÓN: MODELOS DE VERBOS OBSERVABLES -->
+    <div class="section">
+        <h2><i class="fas fa-binoculars"></i> Modelos de Verbos Observables por Dimensión</h2>
+        
+        <p>Para redactar competencias e indicadores efectivos, es fundamental utilizar <strong>verbos observables y medibles</strong>. A continuación, presentamos modelos organizados por dimensión:</p>
+        
+        <div class="models-container">
+            <!-- Modelo SER -->
+            <div class="model-card ser">
+                <div class="model-title">
+                    <i class="fas fa-heart"></i>
+                    <span>Dimensión SER (Actitudinal)</span>
+                </div>
+                <p class="model-description">Se refiere a actitudes, valores y disposiciones que pueden observarse en el comportamiento del estudiante.</p>
+                
+                <div class="verb-grid">
+                    <div class="verb-item ser" onclick="useVerb(this)">Respeta</div>
+                    <div class="verb-item ser" onclick="useVerb(this)">Colabora</div>
+                    <div class="verb-item ser" onclick="useVerb(this)">Participa</div>
+                    <div class="verb-item ser" onclick="useVerb(this)">Muestra</div>
+                    <div class="verb-item ser" onclick="useVerb(this)">Valora</div>
+                    <div class="verb-item ser" onclick="useVerb(this)">Acepta</div>
+                    <div class="verb-item ser" onclick="useVerb(this)">Comparte</div>
+                    <div class="verb-item ser" onclick="useVerb(this)">Asume</div>
+                    <div class="verb-item ser" onclick="useVerb(this)">Demuestra</div>
+                    <div class="verb-item ser" onclick="useVerb(this)">Propone</div>
+                </div>
+                
+                <h4>Ejemplos de indicadores SER:</h4>
+                <ul>
+                    <li>Respeta las normas de convivencia en el 90% de las interacciones</li>
+                    <li>Colabora activamente en al menos 3 de 4 actividades grupales</li>
+                    <li>Muestra empatía hacia compañeros en situaciones conflictivas</li>
+                </ul>
+            </div>
+            
+            <!-- Modelo SABER -->
+            <div class="model-card saber">
+                <div class="model-title">
+                    <i class="fas fa-brain"></i>
+                    <span>Dimensión SABER (Conceptual)</span>
+                </div>
+                <p class="model-description">Se refiere a conocimientos, conceptos e información que pueden evidenciarse a través de diferentes medios.</p>
+                
+                <div class="verb-grid">
+                    <div class="verb-item saber" onclick="useVerb(this)">Identifica</div>
+                    <div class="verb-item saber" onclick="useVerb(this)">Define</div>
+                    <div class="verb-item saber" onclick="useVerb(this)">Explica</div>
+                    <div class="verb-item saber" onclick="useVerb(this)">Compara</div>
+                    <div class="verb-item saber" onclick="useVerb(this)">Clasifica</div>
+                    <div class="verb-item saber" onclick="useVerb(this)">Interpreta</div>
+                    <div class="verb-item saber" onclick="useVerb(this)">Argumenta</div>
+                    <div class="verb-item saber" onclick="useVerb(this)">Relaciona</div>
+                    <div class="verb-item saber" onclick="useVerb(this)">Describe</div>
+                    <div class="verb-item saber" onclick="useVerb(this)">Sintetiza</div>
+                </div>
+                
+                <h4>Ejemplos de indicadores SABER:</h4>
+                <ul>
+                    <li>Identifica al menos 4 de 5 conceptos clave en el texto</li>
+                    <li>Explica con sus palabras 3 procesos fundamentales</li>
+                    <li>Compara correctamente dos teorías contrastando sus principios</li>
+                </ul>
+            </div>
+            
+            <!-- Modelo HACER -->
+            <div class="model-card hacer">
+                <div class="model-title">
+                    <i class="fas fa-hands"></i>
+                    <span>Dimensión HACER (Procedimental)</span>
+                </div>
+                <p class="model-description">Se refiere a habilidades, procedimientos y destrezas que pueden observarse en la ejecución de tareas.</p>
+                
+                <div class="verb-grid">
+                    <div class="verb-item hacer" onclick="useVerb(this)">Resuelve</div>
+                    <div class="verb-item hacer" onclick="useVerb(this)">Diseña</div>
+                    <div class="verb-item hacer" onclick="useVerb(this)">Construye</div>
+                    <div class="verb-item hacer" onclick="useVerb(this)">Aplica</div>
+                    <div class="verb-item hacer" onclick="useVerb(this)">Elabora</div>
+                    <div class="verb-item hacer" onclick="useVerb(this)">Realiza</div>
+                    <div class="verb-item hacer" onclick="useVerb(this)">Calcula</div>
+                    <div class="verb-item hacer" onclick="useVerb(this)">Produce</div>
+                    <div class="verb-item hacer" onclick="useVerb(this)">Ejecuta</div>
+                    <div class="verb-item hacer" onclick="useVerb(this)">Implementa</div>
+                </div>
+                
+                <h4>Ejemplos de indicadores HACER:</h4>
+                <ul>
+                    <li>Resuelve 8 de 10 problemas aplicando el procedimiento indicado</li>
+                    <li>Diseña un prototipo funcional que cumple con 4 de 5 especificaciones</li>
+                    <li>Elabora un informe con estructura completa y sin errores formales</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Comparación entre verbos observables y no observables -->
+        <div class="non-observable">
+            <h4><i class="fas fa-exclamation-triangle"></i> Verbos NO Observables (Evitar)</h4>
+            <p>Estos verbos no pueden medirse directamente y deben acompañarse de evidencias observables:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0;">
+                <span style="background-color: #ffcccc; padding: 8px 15px; border-radius: 20px; font-weight: bold;">Conocer</span>
+                <span style="background-color: #ffcccc; padding: 8px 15px; border-radius: 20px; font-weight: bold;">Comprender</span>
+                <span style="background-color: #ffcccc; padding: 8px 15px; border-radius: 20px; font-weight: bold;">Saber</span>
+                <span style="background-color: #ffcccc; padding: 8px 15px; border-radius: 20px; font-weight: bold;">Apreciar</span>
+                <span style="background-color: #ffcccc; padding: 8px 15px; border-radius: 20px; font-weight: bold;">Valorar</span>
+                <span style="background-color: #ffcccc; padding: 8px 15px; border-radius: 20px; font-weight: bold;">Entender</span>
+            </div>
+            <p><strong>Solución:</strong> Transformar "Comprender la teoría" en "Explica la teoría con ejemplos propios" o "Aplica la teoría en casos prácticos".</p>
+        </div>
+        
+        <!-- Tabla de comparación -->
+        <h3>Comparación: Verbos Observables vs No Observables</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Verbo No Observable</th>
+                    <th>Transformación Observable</th>
+                    <th>Dimensión</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="bad-example">Conocer los números</span></td>
+                    <td><span class="good-example">Identifica y escribe números del 1 al 100</span></td>
+                    <td><span class="dimension-tag saber-tag">Saber</span></td>
+                </tr>
+                <tr>
+                    <td><span class="bad-example">Apreciar el arte</span></td>
+                    <td><span class="good-example">Describe elementos artísticos en 3 obras diferentes</span></td>
+                    <td><span class="dimension-tag ser-tag">Ser</span></td>
+                </tr>
+                <tr>
+                    <td><span class="bad-example">Entender el proceso</span></td>
+                    <td><span class="good-example">Explica el proceso paso a paso con diagramas</span></td>
+                    <td><span class="dimension-tag saber-tag">Saber</span></td>
+                </tr>
+                <tr>
+                    <td><span class="bad-example">Saber resolver ecuaciones</span></td>
+                    <td><span class="good-example">Resuelve 5 ecuaciones de primer grado en 10 minutos</span></td>
+                    <td><span class="dimension-tag hacer-tag">Hacer</span></td>
+                </tr>
+                <tr>
+                    <td><span class="bad-example">Valorar el trabajo en equipo</span></td>
+                    <td><span class="good-example">Colabora activamente completando su parte del proyecto a tiempo</span></td>
+                    <td><span class="dimension-tag ser-tag">Ser</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="section">
+        <h2><i class="fas fa-list-ol"></i> Agenda Minuto a Minuto (120')</h2>
+        
+        <div class="agenda">
+            <div class="time-slot">
+                <div class="time">0-10' | Apertura Interactiva</div>
+                <div class="activity">
+                    <strong>Encuesta rápida:</strong>
+                    <ul>
+                        <li>¿Qué es una competencia (en tus palabras)?</li>
+                        <li>¿Un error común al redactar indicadores?</li>
+                    </ul>
+                    <strong>Chat prompt:</strong> "En 1 frase: diferencia entre 'competencia' e 'indicador'. Envía por chat ahora."
+                </div>
+            </div>
+            
+            <div class="time-slot">
+                <div class="time">10-25' | Modelado del Docente</div>
+                <div class="activity">Pantalla compartida: muestra 2 ejemplos completos. Señala explícitamente: verbo observable, propósito y contexto; luego cómo cada indicador evidencia la misma competencia y a qué dimensión pertenece.</div>
+            </div>
+            
+            <div class="time-slot">
+                <div class="time">25-30' | Formación de Equipos</div>
+                <div class="activity">Divide en salas de 3-4. Asigna roles: facilitador/a, relator/a, timekeeper, verificador/a.</div>
+            </div>
+            
+            <div class="time-slot">
+                <div class="time">30-65' | Taller en Salas</div>
+                <div class="activity">Cada equipo elige área y nivel; redacta: 1 competencia integral + 3 indicadores (al menos uno por dimensión).</div>
+            </div>
+            
+            <div class="time-slot">
+                <div class="time">65-80' | Ronda de Pares</div>
+                <div class="activity">Equipos intercambian enlace de su Doc. Revisión cruzada usando lista de cotejo. Cada equipo deja 3 comentarios sugeridos.</div>
+            </div>
+            
+            <div class="time-slot">
+                <div class="time">80-105' | Socialización</div>
+                <div class="activity">3-4 equipos presentan en 3 min c/u. Usa "levantar la mano" y reacciones para votar si los indicadores son observables y alineados.</div>
+            </div>
+            
+            <div class="time-slot">
+                <div class="time">105-115' | Cierre Guiado</div>
+                <div class="activity">Resume buenas prácticas y errores frecuentes vistos hoy. Conecta explícitamente con la Tarea 2 (40 pts) del curso.</div>
+            </div>
+            
+            <div class="time-slot">
+                <div class="time">115-120' | Ticket de Salida</div>
+                <div class="activity">Form con 3 ítems: 1 competencia en tu área, 1 indicador medible, 1 mejora que harás en tu Tarea 2.</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2><i class="fas fa-file-alt"></i> Plantilla para Equipos</h2>
+        <p>Copia y pega esta plantilla en cada Google Doc de equipo:</p>
+        
+        <div class="template">
+            <h3>Contexto</h3>
+            <div class="template-field">
+                <label>Área:</label>
+                <div>[Especificar área de aprendizaje]</div>
+            </div>
+            <div class="template-field">
+                <label>Nivel:</label>
+                <div>[Especificar nivel educativo]</div>
+            </div>
+            <div class="template-field">
+                <label>Sección:</label>
+                <div>[Especificar sección/grado]</div>
+            </div>
+            <div class="template-field">
+                <label>Situación/Propósito:</label>
+                <div>[Describir brevemente el contexto o situación de aprendizaje]</div>
+            </div>
+            
+            <h3>Competencia</h3>
+            <div class="competence-example">
+                <strong>Verbo observable + contenido + propósito + contexto:</strong><br>
+                [Redactar aquí la competencia integral que integre Ser, Saber y Hacer]
+            </div>
+            
+            <h3>Indicadores de Logro (al menos 3)</h3>
+            <div class="template-field">
+                <label><span class="dimension-tag ser-tag">Ser</span> (actitudinal):</label>
+                <div>[Indicador observable y medible para la dimensión actitudinal]</div>
+            </div>
+            <div class="template-field">
+                <label><span class="dimension-tag saber-tag">Saber</span> (conceptual):</label>
+                <div>[Indicador observable y medible para la dimensión conceptual]</div>
+            </div>
+            <div class="template-field">
+                <label><span class="dimension-tag hacer-tag">Hacer</span> (procedimental):</label>
+                <div>[Indicador observable y medible para la dimensión procedimental]</div>
+            </div>
+            
+            <div class="template-field">
+                <label>Evidencia/Producto:</label>
+                <div>[Describir el producto o evidencia que demostrará el logro]</div>
+            </div>
+            <div class="template-field">
+                <label>Criterios/Niveles de Desempeño:</label>
+                <div>[Especificar criterios de evaluación y niveles esperados]</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2><i class="fas fa-eye"></i> Ejemplos Listos para Mostrar</h2>
+        
+        <div class="example-container">
+            <div class="example">
+                <div class="example-title"><i class="fas fa-book"></i> Ejemplo A - Lengua (6.º grado)</div>
+                
+                <div class="competence-example">
+                    <strong>Competencia:</strong><br>
+                    <em>Analiza y produce textos expositivos breves sobre temas comunitarios para comunicar información con rigor y ética en el aula virtual.</em>
+                </div>
+                
+                <p><strong>Indicadores:</strong></p>
+                <ul>
+                    <li><span class="dimension-tag ser-tag">Ser</span>: Respeta la autoría citando ≥2 fuentes en el formato indicado.</li>
+                    <li><span class="dimension-tag saber-tag">Saber</span>: Identifica idea principal y ≥2 secundarias en 3/4 párrafos.</li>
+                    <li><span class="dimension-tag hacer-tag">Hacer</span>: Redacta síntesis de 120–150 palabras con ≤2 errores ortográficos.</li>
+                </ul>
+            </div>
+            
+            <div class="example">
+                <div class="example-title"><i class="fas fa-calculator"></i> Ejemplo B - Matemática (1.º año)</div>
+                
+                <div class="competence-example">
+                    <strong>Competencia:</strong><br>
+                    <em>Resuelve situaciones de proporcionalidad directa aplicando razones y porcentajes para decisiones cotidianas en el contexto escolar.</em>
+                </div>
+                
+                <p><strong>Indicadores:</strong></p>
+                <ul>
+                    <li><span class="dimension-tag ser-tag">Ser</span>: Muestra perseverancia y explica su procedimiento al equipo.</li>
+                    <li><span class="dimension-tag saber-tag">Saber</span>: Reconoce tablas proporcionales justificando con razones equivalentes.</li>
+                    <li><span class="dimension-tag hacer-tag">Hacer</span>: Resuelve 4/5 ejercicios de regla de tres con procedimiento legible.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2><i class="fas fa-clipboard-check"></i> Lista de Cotejo (para revisión en vivo)</h2>
+        
+        <div class="checklist">
+            <li>La <strong>competencia</strong> usa <strong>verbo observable</strong>, contenido, propósito y contexto</li>
+            <li>Los <strong>indicadores</strong> son <strong>específicos y medibles</strong> (incluyen condición y/o nivel)</li>
+            <li><strong>Alineación</strong> clara: cada indicador evidencia la <strong>misma competencia</strong></li>
+            <li>Cobertura de <strong>Ser–Saber–Hacer</strong> (al menos 1 indicador por dimensión)</li>
+            <li>Redacción <strong>clara</strong> (sin ambigüedades/verbos internos no observables)</li>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="connection-box">
+            <h2><i class="fas fa-link"></i> Conexión con la Evaluación (Tarea 2)</h2>
+            <p>Lo producido hoy sirve como <strong>base</strong> para tu <strong>Tarea 2 (40 pts)</strong> del plan; mantén la estructura y criterios que el curso define.</p>
+            <p>Sube tu entrega final en el <strong>aula virtual</strong> en la fecha del cronograma del curso.</p>
+            <button class="btn" onclick="alert('Acceso a materiales de Tarea 2 (simulado)')"><i class="fas fa-download"></i> Acceder a materiales de Tarea 2</button>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2><i class="fas fa-wifi"></i> Plan B por Conectividad</h2>
+        <ul>
+            <li>Si alguien cae de la llamada: seguir por <strong>chat</strong> o modo <strong>solo audio</strong></li>
+            <li>Si pierde sesión: el equipo comparte el <strong>enlace del Doc</strong> por chat; el estudiante continúa asincrónicamente y <strong>agrega su color</strong> para rastrear aportes</li>
+            <li>Resumen y <strong>grabación</strong> (si procede) se publican en el aula</li>
+        </ul>
+    </div>
+    
+    <div class="footer">
+        <p><strong>Clase 5 - Taller de Redacción de Competencias e Indicadores</strong></p>
+        <p>Organización y Administración Escolar · Modalidad Online</p>
+        <p>© Material preparado para implementación en GitHub Pages</p>
+    </div>
+    
+    <script>
+        // Interactividad para la plantilla
+        document.querySelectorAll('.template-field div').forEach(field => {
+            field.addEventListener('click', function() {
+                const text = this.textContent;
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.value = text.replace(/\[|\]/g, '');
+                input.style.width = '100%';
+                input.style.padding = '8px';
+                input.style.border = '1px solid #3498db';
+                input.style.borderRadius = '4px';
+                
+                this.textContent = '';
+                this.appendChild(input);
+                input.focus();
+                
+                input.addEventListener('blur', function() {
+                    const newText = this.value || '[Texto a completar]';
+                    this.parentElement.textContent = newText;
+                });
+                
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        this.blur();
+                    }
+                });
+            });
+        });
+        
+        // Función para usar verbos de los modelos
+        function useVerb(element) {
+            const verb = element.textContent;
+            const dimension = element.classList.contains('ser') ? 'ser' : 
+                            element.classList.contains('saber') ? 'saber' : 'hacer';
+            
+            // Crear un mensaje visual
+            const message = document.createElement('div');
+            message.style.position = 'fixed';
+            message.style.top = '20px';
+            message.style.right = '20px';
+            message.style.backgroundColor = dimension === 'ser' ? '#ffeaa7' : 
+                                          dimension === 'saber' ? '#a29bfe' : '#55efc4';
+            message.style.color = dimension === 'saber' ? 'white' : '#000';
+            message.style.padding = '15px';
+            message.style.borderRadius = '8px';
+            message.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+            message.style.zIndex = '1000';
+            message.style.fontWeight = 'bold';
+            message.innerHTML = `<i class="fas fa-check-circle"></i> Verbo "${verb}" copiado para dimensión ${dimension.toUpperCase()}`;
+            
+            document.body.appendChild(message);
+            
+            // Copiar al portapapeles
+            navigator.clipboard.writeText(verb).then(() => {
+                console.log(`Verbo "${verb}" copiado al portapapeles`);
+            });
+            
+            // Remover mensaje después de 3 segundos
+            setTimeout(() => {
+                message.style.transition = 'opacity 0.5s';
+                message.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(message);
+                }, 500);
+            }, 3000);
+        }
+        
+        // Botón para descargar materiales
+        document.querySelector('.btn').addEventListener('click', function() {
+            alert('En un entorno real, aquí se descargarían los materiales de la Tarea 2.');
+        });
+        
+        // Efecto de aparición gradual para las secciones
+        const sections = document.querySelectorAll('.section');
+        sections.forEach((section, index) => {
+            section.style.animationDelay = `${index * 0.1}s`;
+        });
+        
+        // Efecto especial para los verbos
+        document.querySelectorAll('.verb-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const dimension = this.classList.contains('ser') ? 'ser' : 
+                                this.classList.contains('saber') ? 'saber' : 'hacer';
+                const color = dimension === 'ser' ? '#ffeaa7' : 
+                             dimension === 'saber' ? '#a29bfe' : '#55efc4';
+                this.style.boxShadow = `0 4px 8px ${color}80`;
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+            });
+        });
+    </script>
+</body>
+</html>
